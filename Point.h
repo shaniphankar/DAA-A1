@@ -1,5 +1,5 @@
-#ifndef LINE_H
-#define LINE_H
+#ifndef POINT_H
+#define POINT_H
 #include <iostream>
 
 class Point
