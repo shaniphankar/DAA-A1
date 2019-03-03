@@ -5,16 +5,16 @@ Point::Point()
 	x=0;
 	y=0;
 }
-Point::Point(int x,int y)
+Point::Point(double x,double y)
 {
 	this->x=x;
 	this->y=y;
 }
-int Point::getX()
+double Point::getX()
 {
 	return x;
 }
-int Point::getY()
+double Point::getY()
 {
 	return y;
 }	
