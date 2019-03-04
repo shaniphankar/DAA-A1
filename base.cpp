@@ -6,6 +6,7 @@
 #include <cmath>
 #include <ctime>
 #include "Point.h"
+#include "Stack.h"
 using namespace std;
 
 void grahamScan()
@@ -20,7 +21,7 @@ void jarvisMarch()
 
 void kPS()
 {
-
+	
 }
 
 int main(int argc, char** argv)
@@ -44,9 +45,5 @@ int main(int argc, char** argv)
 		line_stream>>x>>y;
 		points.push_back(Point(x,y));
 	}
-	for(int i=0;i<num_points;i++)
-	{
-		cout<<points[i].getX()<<" "<<points[i].getY()<<endl;
-	}
-
+	
 }
