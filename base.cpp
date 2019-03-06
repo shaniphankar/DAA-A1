@@ -7,18 +7,41 @@
 #include <ctime>
 #include "Point.h"
 #include "Stack.h"
+#include "GeomOps.h"
 #define k0 5
 using namespace std;
 
+GeomOps geomAPI;
 
 void grahamScan()
 {
 
 }
 
-void jarvisMarch(vector<Point> hull, vector<Point> points,int num_points)
+void jarvisMarch(vector<int> &hull, vector<Point> points,int num_points)
 {
-	
+	int leftMost=geomAPI.getLeftMost(points,num_points);
+	//cout<<points[lMost].getX()<<" "<<points[lMost].getY()<<endl;
+    hull.push_back(leftMost);
+    int current=leftMost;
+    while(true)
+    {
+        int next = (current+1)%num_points;
+        for(int i=0;i<num_points;i++)
+        {
+            if(i==current)
+                continue;
+            int oriFlag=geomAPI.getOrientation(points[current],points[i],points[next]);
+            if(oriFlag<0 || (oriFlag==0 && geomAPI.getDistance(points[i],points[current])>geomAPI.getDistance(points[next],points[current])))
+            {
+                next=i;
+            }
+        }
+        current=next;
+        if(current==leftMost)
+            break;
+        hull.push_back(next);
+    }
 }
 
 void kPS(vector<Point> hull, vector<Point> points,int num_points)
@@ -28,7 +51,7 @@ void kPS(vector<Point> hull, vector<Point> points,int num_points)
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input1.txt");
+	std::ifstream input("./input/input6.txt");
 	vector<Point> points;
 	string line_data;
 	int fLineFlag=0;
@@ -47,9 +70,15 @@ int main(int argc, char** argv)
 		line_stream>>x>>y;
 		points.push_back(Point(x,y));
 	}
-	vector<Point> hullGS;
-	vector<Point> hullJM;
-	vector<Point> hullKPS;
-	jarvisMarch(hull,points,num_points);
-	
+	vector<int> hullGS;
+	vector<int> hullJM;
+	vector<int> hullKPS;
+	jarvisMarch(hullJM,points,num_points);
+	std::ofstream outputJM("./outputJM/output6JM.txt");
+	int num_points_hull=hullJM.size();
+	for(int i=0;i<num_points_hull;i++)
+	{
+	    output<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<"\n";
+	    //cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
+	}
 }
