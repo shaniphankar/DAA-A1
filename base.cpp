@@ -7,19 +7,21 @@
 #include <ctime>
 #include "Point.h"
 #include "Stack.h"
+#define k0 5
 using namespace std;
+
 
 void grahamScan()
 {
 
 }
 
-void jarvisMarch()
+void jarvisMarch(vector<Point> hull, vector<Point> points,int num_points)
 {
-
+	
 }
 
-void kPS()
+void kPS(vector<Point> hull, vector<Point> points,int num_points)
 {
 	
 }
@@ -45,5 +47,9 @@ int main(int argc, char** argv)
 		line_stream>>x>>y;
 		points.push_back(Point(x,y));
 	}
+	vector<Point> hullGS;
+	vector<Point> hullJM;
+	vector<Point> hullKPS;
+	jarvisMarch(hull,points,num_points);
 	
 }
