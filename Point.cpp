@@ -19,6 +19,11 @@ double Point::getY()
 	return y;
 }	
 
+void Point::printPoint()
+{
+	std::cout<<this->x<<" "<<this->y<<"\n";
+}
+
 
 
 

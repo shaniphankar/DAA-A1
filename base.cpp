@@ -46,12 +46,37 @@ void jarvisMarch(vector<int> &hull, vector<Point> points,int num_points)
 
 void kPS(vector<int> &hull, vector<Point> points,int num_points)
 {
+	Point pUMin,pUMax,pLMin,pLMax;
 	vector<Point> lMostVec=geomAPI.getLeftMostMultiple(points,num_points);
-	int num_points_hull=lMostVec.size();
-	for(int i=0;i<num_points_hull;i++)
+	int numPointsLeft=lMostVec.size();
+	if(numPointsLeft==1)
 	{
-		cout<<lMostVec[i].getX()<<" "<<lMostVec[i].getY()<<endl;
+		pUMin=lMostVec[0];
+		pLMin=lMostVec[0];
 	}
+	else
+	{
+		pUMin=lMostVec[geomAPI.getTopMost(lMostVec,numPointsLeft)];
+		pLMin=lMostVec[geomAPI.getBottomMost(lMostVec,numPointsLeft)];
+	}
+	vector<Point> rMostVec=geomAPI.getRightMostMultiple(points,num_points);
+	int numPointsRight=rMostVec.size();
+	if(numPointsRight==1)
+	{
+		pUMax=rMostVec[0];
+		pLMax=rMostVec[0];
+	}
+	else
+	{
+		pUMax=rMostVec[geomAPI.getTopMost(rMostVec,numPointsRight)];
+		pLMax=rMostVec[geomAPI.getBottomMost(rMostVec,numPointsRight)];
+	}
+	pLMin.printPoint();
+	pLMax.printPoint();
+	pUMin.printPoint();
+	pUMax.printPoint();
+
+	
 }
 
 int main(int argc, char** argv)

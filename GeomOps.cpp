@@ -38,6 +38,32 @@ int GeomOps::getRightMost(std::vector<Point> points,int num_points)
     return rMost;
 }
 
+int GeomOps::getBottomMost(std::vector<Point> points,int num_points)
+{
+    int bMost=0;
+    for(int i=1;i<num_points;i++)
+    {
+        if(points[i].getY()<points[bMost].getY())
+        {
+            bMost=i;
+        }
+    }
+    return bMost;
+}
+
+int GeomOps::getTopMost(std::vector<Point> points,int num_points)
+{
+    int tMost=0;
+    for(int i=1;i<num_points;i++)
+    {
+        if(points[i].getY()>points[tMost].getY())
+        {
+            tMost=i;
+        }
+    }
+    return tMost;
+}
+
 std::vector<Point> GeomOps::getLeftMostMultiple(std::vector<Point> points,int num_points)
 {
     int lMost=0;
