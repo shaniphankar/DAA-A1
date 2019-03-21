@@ -13,6 +13,9 @@ using namespace std;
 
 GeomOps geomAPI;
 
+std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points);
+std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points);
+
 void grahamScan()
 {
 
@@ -71,12 +74,43 @@ void kPS(vector<int> &hull, vector<Point> points,int num_points)
 		pUMax=rMostVec[geomAPI.getTopMost(rMostVec,numPointsRight)];
 		pLMax=rMostVec[geomAPI.getBottomMost(rMostVec,numPointsRight)];
 	}
-	pLMin.printPoint();
-	pLMax.printPoint();
-	pUMin.printPoint();
-	pUMax.printPoint();
+	// pLMin.printPoint();
+	// pLMax.printPoint();
+	// pUMin.printPoint();
+	// pUMax.printPoint();
+	vector<Point> TUp;
+	vector<Point> TLo;
+	TUp.push_back(pUMin);
+	TUp.push_back(pUMax);
+	for(int i=0;i<num_points;i++)
+	{
+		if(points[i].getX()>pUMin.getX())
+		{
+			TUp.push_back(points[i]);
+		}
+	}
+	TLo.push_back(pLMin);
+	TLo.push_back(pLMax);
+	for(int i=0;i<num_points;i++)
+	{
+		if(points[i].getX()>pLMin.getX())
+		{
+			TLo.push_back(points[i]);
+		}
+	}
+	// std::vector<Point> uHull=upperHull(pUMin,pUMax,TUp,TUp.size());
+	// std::vector<Point> lHull=lowerHull(pLMin,pLMax,TLo,TLo.size());
+}
 
-	
+Point medianOfMedians(std::vector<Point> points,int l,int r,int k)
+{	
+}
+
+std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
+{
+}
+std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
+{
 }
 
 int main(int argc, char** argv)
