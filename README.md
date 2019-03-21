@@ -2,5 +2,5 @@
 Convex Hull Algorithms
 
 Run using 
-g++ base.cpp Point.cpp
+g++ base.cpp GeomOps.cpp Point.cpp
 
