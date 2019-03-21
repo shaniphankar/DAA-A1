@@ -44,14 +44,20 @@ void jarvisMarch(vector<int> &hull, vector<Point> points,int num_points)
     }
 }
 
-void kPS(vector<Point> hull, vector<Point> points,int num_points)
+void kPS(vector<int> &hull, vector<Point> points,int num_points)
 {
-	
+	vector<Point> lMostVec=geomAPI.getLeftMostMultiple(points,num_points);
+	int num_points_hull=lMostVec.size();
+	for(int i=0;i<num_points_hull;i++)
+	{
+		cout<<lMostVec[i].getX()<<" "<<lMostVec[i].getY()<<endl;
+	}
 }
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input6.txt");
+	// std::ifstream input("./input/input1.txt");
+	std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
 	int fLineFlag=0;
@@ -73,12 +79,13 @@ int main(int argc, char** argv)
 	vector<int> hullGS;
 	vector<int> hullJM;
 	vector<int> hullKPS;
-	jarvisMarch(hullJM,points,num_points);
-	std::ofstream outputJM("./outputJM/output6JM.txt");
-	int num_points_hull=hullJM.size();
-	for(int i=0;i<num_points_hull;i++)
-	{
-	    output<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<"\n";
-	    //cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
-	}
+	kPS(hullKPS,points,num_points);
+	// jarvisMarch(hullJM,points,num_points);
+	// std::ofstream outputJM("./outputJM/output6JM.txt");
+	// int num_points_hull=hullJM.size();
+	// for(int i=0;i<num_points_hull;i++)
+	// {
+	//     output<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<"\n";
+	//     //cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
+	// }
 }
