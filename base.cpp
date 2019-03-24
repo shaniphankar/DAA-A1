@@ -140,11 +140,12 @@ int main(int argc, char** argv)
 	vector<int> hullKPS;
 	kPS(hullKPS,points,num_points);
 	// jarvisMarch(hullJM,points,num_points);
-	// std::ofstream outputJM("./outputJM/output6JM.txt");
+	// std::ofstream outputJM("./outputJM/output7JM.txt");
 	// int num_points_hull=hullJM.size();
 	// for(int i=0;i<num_points_hull;i++)
 	// {
+	// 	outputJM<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<"\n";
 	//     output<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<"\n";
-	//     //cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
+	//     cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
 	// }
 }
