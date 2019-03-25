@@ -230,11 +230,12 @@ int main(int argc, char** argv)
 	medianOfMedians(v,0,v.size()-1,v.size()/2).printPoint();
 	cout<<"\n";
 	// jarvisMarch(hullJM,points,num_points);
-	// std::ofstream outputJM("./outputJM/output6JM.txt");
+	// std::ofstream outputJM("./outputJM/output7JM.txt");
 	// int num_points_hull=hullJM.size();
 	// for(int i=0;i<num_points_hull;i++)
 	// {
+	// 	outputJM<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<"\n";
 	//     output<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<"\n";
-	//     //cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
+	//     cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
 	// }
 }
