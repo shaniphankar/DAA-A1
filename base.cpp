@@ -8,6 +8,7 @@
 #include "Point.h"
 #include "Stack.h"
 #include "GeomOps.h"
+#include <algorithm>
 #define k0 5
 using namespace std;
 
@@ -102,8 +103,87 @@ void kPS(vector<int> &hull, vector<Point> points,int num_points)
 	// std::vector<Point> lHull=lowerHull(pLMin,pLMax,TLo,TLo.size());
 }
 
+void swap(Point &x,Point &y){
+	double temp;
+	
+	temp = x.getX();
+	x.setX(y.getX());
+	y.setX(temp);
+
+	temp = x.getY();
+	x.setY(y.getY());
+	y.setY(temp);
+}
+
+int medianPartition(std::vector<Point> points,int l,int r,Point x){
+
+	int z;
+	for(z=l;z<r;z++)
+		if(points[z].getX()==x.getX() && points[z].getY()==x.getY())
+			break;
+
+	swap(points[z],points[r]);
+
+	int i=l;
+
+	for(int z=l;z<r;z++){
+		if(points[z].getX()<=x.getX()){
+			swap(points[z],points[i]);
+			i++;
+		}
+	}
+
+	swap(points[i],points[r]);
+
+/*	printf("printing vec:\n");
+	for(int z=l;z<=r;z++){
+		points[z].printPoint();
+		cout<<"\t";
+	}
+	cout<<"\n";*/
+
+	return i;
+}
+
+bool sortByX(Point a,Point b){
+	return (a.getX() < b.getX());
+}
+
+int c=100;
 Point medianOfMedians(std::vector<Point> points,int l,int r,int k)
-{	
+{	//dividing into buckets
+	//printf("arguments: l:%d r:%d k:%d\n",l,r,k );
+	c--;
+	if(c<0)
+		exit(0);
+	int nofOfPts= (r-l+1);
+
+	std::vector<Point> medianVec;
+
+	for(int i=l;i<=r;i=i+5){
+		int start=i;
+		int end= (i+5<=r?i+5:r+1);
+		sort(points.begin()+start,points.begin()+end,sortByX);
+		medianVec.push_back(points[(start+end)/2]);
+	}
+
+	/*cout<<"c:"<<c<<"\n";
+	for(int l=0;l<medianVec.size();l++){
+		medianVec[l].printPoint();
+		cout<<"\n";
+	}*/
+
+	Point medOfMed = (medianVec.size()==1? medianVec[0]: medianOfMedians(medianVec,0,medianVec.size()-1,medianVec.size()/2) );
+
+	/*printf("medOfMed:\n");
+	medOfMed.printPoint();*/
+	int medianPosition = medianPartition(points,0,points.size()-1, medOfMed);
+	//printf("medianPosition: %d\n",medianPosition );
+
+	//cout<<"ans:\n";
+	if(medianPosition - l == k) return medOfMed;
+	else if(k>medianPosition - l) return medianOfMedians(points,medianPosition + 1, r, k - medianPosition - 1 +  l );
+	else return medianOfMedians(points,l,medianPosition - 1, k);
 }
 
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
@@ -115,8 +195,8 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 
 int main(int argc, char** argv)
 {
-	// std::ifstream input("./input/input1.txt");
-	std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
+	std::ifstream input("./input/input1.txt");
+	//std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
 	int fLineFlag=0;
@@ -138,7 +218,17 @@ int main(int argc, char** argv)
 	vector<int> hullGS;
 	vector<int> hullJM;
 	vector<int> hullKPS;
-	kPS(hullKPS,points,num_points);
+	//kPS(hullKPS,points,num_points);
+	std::vector<Point> v;
+/*	v.push_back(Point(10.0,11.0));
+	v.push_back(Point(12.1,1.0));
+	v.push_back(Point(10.1,15.1));
+	v.push_back(Point(1.1,11.0));
+	v.push_back(Point(9.1,1.0));*/
+	
+	//cout<<"ans:\n";
+	medianOfMedians(v,0,v.size()-1,v.size()/2).printPoint();
+	cout<<"\n";
 	// jarvisMarch(hullJM,points,num_points);
 	// std::ofstream outputJM("./outputJM/output6JM.txt");
 	// int num_points_hull=hullJM.size();

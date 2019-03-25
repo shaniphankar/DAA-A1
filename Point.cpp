@@ -18,7 +18,14 @@ double Point::getY()
 {
 	return y;
 }	
-
+void Point::setX(double x)
+{
+	this->x=x;
+}
+void Point::setY(double y)
+{
+	this->y=y;
+} 
 void Point::printPoint()
 {
 	std::cout<<this->x<<" "<<this->y<<"\n";

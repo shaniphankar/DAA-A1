@@ -9,6 +9,8 @@ class Point
 		Point(double x,double y);
 		double getX();
 		double getY();
+		void setX(double x);
+		void setY(double y);
 		void printPoint();
 	private:
 		double x; 
