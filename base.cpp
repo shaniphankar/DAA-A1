@@ -103,100 +103,95 @@ void kPS(vector<int> &hull, vector<Point> points,int num_points)
 	// std::vector<Point> lHull=lowerHull(pLMin,pLMax,TLo,TLo.size());
 }
 
-void swap(Point &x,Point &y){
-	double temp;
+void swap(Point* x,Point* y){
+	Point temp;
 	
-	temp = x.getX();
-	x.setX(y.getX());
-	y.setX(temp);
+	temp = *x;
+	*x=*y;
+	*y=temp;
+}
 
-	temp = x.getY();
-	x.setY(y.getY());
-	y.setY(temp);
+int medianPartition(std::vector<Point> &points,int l,int r,Point x){
+	/*printf("medianPartition start:\n");
+	for(int z=l;z<=r;z++){
+		points[z].printPoint();
+	}*/
+
+	int z;
+	for(z=l;z<r;z++)
+		if(points[z].getX()==x.getX() && points[z].getY()==x.getY())
+			break;
+
+	swap(&points[z],&points[r]);
+
+	int i=l;
+
+	for(int z=l;z<r;z++){
+		if(points[z].getX()<=x.getX()){
+			swap(&points[z],&points[i]);
+			i++;
+		}
+	}
+
+	swap(&points[i],&points[r]);
+
+/*	printf("printing vec:\n");
+	for(int z=l;z<=r;z++){
+		points[z].printPoint();
+		cout<<"\t";
+	}
+	cout<<"\n";*/
+
+	/*printf("medianPartition end here:\n");
+	for(int z=l;z<=r;z++){
+		points[z].printPoint();
+	}*/
+
+	return i;
 }
 
 bool sortByX(Point a,Point b){
 	return (a.getX() < b.getX());
 }
 
+int c=10;
+Point medianOfMedians(std::vector<Point> &points,int l,int r,int k)
+{	//dividing into buckets
+	//printf("arguments: l:%d r:%d k:%d\n",l,r,k );
+	
+	c--;
+	if(c<0)
+		exit(0);
 
-int medianPartition(std::vector<Point> points,int l,int r,Point x){
+	int nofOfPts= (r-l+1);
 
-	int z;
-	for(z=l;z<r;z++)
-		if(points[z].getX()==x.getX() && points[z].getY()==x.getY())
-			break;
-	swap(points[z],points[r]);
-	z=l;
-	for(int j=l;j<r;j++){
-		if(points[j].getX()<=x.getX()){
-			swap(points[z],points[j]);
-			z++;
-		}
+	std::vector<Point> medianVec;
+
+	for(int i=l;i<=r;i=i+5){
+		int start=i;
+		int end= (i+5<=r?i+5:r+1);
+		sort(points.begin()+start,points.begin()+end,sortByX);
+		medianVec.push_back(points[(start+end)/2]);
+
 	}
-	swap(points[z],points[r]);
-	return z;
-}
+/*
+	cout<<"c:"<<c<<"\n";
+	for(int l=0;l<medianVec.size();l++){
+		medianVec[l].printPoint();
+		cout<<"\n";
+	}*/
 
-// int c=100;
-Point medianOfMedians(std::vector<Point> points,int l,int r,int k)
-{	
-	// c--;
-	// if(c<0)
-	// 	exit(0);
-	// cout<<"Depth="<<depth<<endl;
-	if(k>0 && k<= r-l+1)
-	{
-		int nofOfPts= (r-l+1);
-		std::vector<Point> medianVec;
-		int medianVecIndex=0;
-		std::vector<Point> temp;
-		for(int i=0;i<nofOfPts;i++)
-		{
-			temp.push_back(Point(points[i].getX(),points[i].getY()));
-		}
-		for(int i=l;i<=r;i=i+5)
-		{
-			int start=i;
-			int end= (i+5<=r?i+5:r+1);
+	Point medOfMed = (medianVec.size()==1? medianVec[0]: medianOfMedians(medianVec,0,medianVec.size()-1,medianVec.size()/2) );
 
-			sort(points.begin()+start,points.begin()+end,sortByX);
-			// for(int j=start;j<end;j++)
-			// {
-			// 	points[j].printPoint();
-			// }
-			medianVec.push_back(points[(start+end)/2]);
-			// medianVec[medianVecIndex++].printPoint();
-		}
-		for(int i=0;i<nofOfPts;i++)
-		{
-			points[i]=temp[i];
-		}
+	/*printf("medOfMed:\n");
+	medOfMed.printPoint();*/
+	int medianPosition = medianPartition(points,l,r, medOfMed);
+	//printf("medianPosition: %d\n",medianPosition );
 
-		// /*cout<<"c:"<<c<<"\n";
-		
-		Point medOfMed = (medianVec.size()==1? medianVec[0]: medianOfMedians(medianVec,0,medianVec.size()-1,medianVec.size()/2));
-		// printf("medOfMed:\n");
-		// medOfMed.printPoint();
-		cout<<"Before parittion\n";
-		for(int i=l;i<r-l+1;i++)
-		{
-			points[i].printPoint();
-		}
-		int medianPosition = medianPartition(points,l,r, medOfMed);
-		cout<<"After parittion\n";
-		for(int i=l;i<r-l+1;i++)
-		{
-			points[i].printPoint();
-		}
-		// printf("medianPosition: %d\n",medianPosition );
-
-		// //cout<<"ans:\n";
-		if((medianPosition - l) == (k-1)) return medOfMed;
-		else if((k-1)>(medianPosition - l)) return medianOfMedians(points,medianPosition + 1, r, k - medianPosition - 1 +  l );
-		return medianOfMedians(points,l,medianPosition - 1, k);
-	}
-	return Point(-100,-100);
+	//cout<<"ans:\n";
+	if(medianPosition - l == k) return medOfMed;
+	else if(k>medianPosition - l) return medianOfMedians(points,medianPosition + 1, r, k - medianPosition - 1 +  l );
+	else return medianOfMedians(points,l,medianPosition - 1, k);
 }
 
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
@@ -231,22 +226,19 @@ int main(int argc, char** argv)
 	vector<int> hullGS;
 	vector<int> hullJM;
 	vector<int> hullKPS;
-	//kPS(hullKPS,points,num_points);
+	kPS(hullKPS,points,num_points);
+
 	std::vector<Point> v;
 	for(int i=0;i<10;i++)
-	{
-		v.push_back(Point(10-i,i));
-		// v[i].printPoint();
-	}
-	// v.push_back(Point(10.0,11.0));
-	// v.push_back(Point(12.1,1.0));
-	// v.push_back(Point(10.1,15.1));
-	// v.push_back(Point(1.1,11.0));
-	// v.push_back(Point(9.1,1.0));
-	
-	//cout<<"ans:\n";
+		v.push_back(Point(10-i,10-i));
+	for(int i=0;i<10;i++)
+		v.push_back(Point(100-i,100-i));
+
+	printf("points:\n");
+	for(int i=0;i<v.size();i++)
+		v[i].printPoint();
+
 	medianOfMedians(v,0,v.size()-1,v.size()/2).printPoint();
-	// cout<<"\n";
 	// jarvisMarch(hullJM,points,num_points);
 	// std::ofstream outputJM("./outputJM/output7JM.txt");
 	// int num_points_hull=hullJM.size();
