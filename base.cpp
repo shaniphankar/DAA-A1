@@ -8,6 +8,7 @@
 #include "Point.h"
 #include "Stack.h"
 #include "GeomOps.h"
+#include <unordered_map>
 #include <algorithm>
 #define k0 5
 using namespace std;
@@ -161,14 +162,9 @@ bool sortByX(Point a,Point b){
 	return (a.getX() < b.getX());
 }
 
-int c=10;
 Point medianOfMedians(std::vector<Point> &points,int l,int r,int k)
 {	//dividing into buckets
 	//printf("arguments: l:%d r:%d k:%d\n",l,r,k );
-
-	c--;
-	if(c<0)
-		exit(0);
 
 	int nofOfPts= (r-l+1);
 
@@ -200,12 +196,38 @@ Point medianOfMedians(std::vector<Point> &points,int l,int r,int k)
 	else if(k>medianPosition - l) return medianOfMedians(points,medianPosition + 1, r, k - medianPosition - 1 +  l );
 	else return medianOfMedians(points,l,medianPosition - 1, k);
 }
-pair<Point,Point> upperBridge(std::vector<Point> S,Point L)
+pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L)
 {
-	std::vector<Point> candidates;
+	vector<Point> candidates;
 	if(S.size()==2)
 		return make_pair(S[0],S[1]);
-	
+	vector<pair<Point,Point>> pairs;
+	for(int i=0;i<num_points;i=i+2)
+	{
+		pairs.push_back(make_pair(S[i],S[i+1]));
+	}
+	if(num_points%2==1)
+	{
+		candidates.push_back(S[num_points-1]);
+	}
+	vector<double> K;
+	for(int i=0;i<pairs.size();i++)
+	{
+		if(pairs[i].first.getX()==pairs[i].second.getX())
+		{
+			if(pairs[i].first.getY()>pairs[i].second.getY())
+				candidates.push_back(pairs[i].first);
+			else
+				candidates.push_back(pairs[i].second);
+			K.push_back(0);
+		}
+		else
+		{
+			K.push_back((pairs[i].first.getY()-pairs[i].second.getY())/(pairs[i].first.getX()-pairs[i].second.getX()));
+			cout<<K[i]<<endl;
+		}
+	}
+	nth_element()
 }
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
 {
@@ -223,7 +245,7 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 			TRight.push_back(points[i]);
 		}
 	}
-	upperBridge(points,a);
+	upperBridge(points,num_points,a);
 }
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
 {
