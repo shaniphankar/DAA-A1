@@ -48,6 +48,7 @@ void jarvisMarch(vector<int> &hull, vector<Point> points,int num_points)
     }
 }
 
+
 void kPS(vector<int> &hull, vector<Point> points,int num_points)
 {
 	Point pUMin,pUMax,pLMin,pLMax;
@@ -83,29 +84,35 @@ void kPS(vector<int> &hull, vector<Point> points,int num_points)
 	vector<Point> TLo;
 	TUp.push_back(pUMin);
 	TUp.push_back(pUMax);
+	// cout<<"TUP\n";
 	for(int i=0;i<num_points;i++)
 	{
-		if(points[i].getX()>pUMin.getX())
+		if(points[i].getX()>pUMin.getX() && points[i].getX()<pUMax.getX())
 		{
 			TUp.push_back(points[i]);
+			// TUp[i].printPoint();
 		}
 	}
 	TLo.push_back(pLMin);
 	TLo.push_back(pLMax);
+	// cout<<"TLo\n";
 	for(int i=0;i<num_points;i++)
 	{
-		if(points[i].getX()>pLMin.getX())
+		if(points[i].getX()>pLMin.getX()&&points[i].getX()<pLMax.getX())
 		{
 			TLo.push_back(points[i]);
+			// TLo[i].printPoint();
 		}
 	}
+
+	upperHull(pUMin,pUMax,TUp,TUp.size());
 	// std::vector<Point> uHull=upperHull(pUMin,pUMax,TUp,TUp.size());
 	// std::vector<Point> lHull=lowerHull(pLMin,pLMax,TLo,TLo.size());
 }
 
 void swap(Point* x,Point* y){
 	Point temp;
-	
+
 	temp = *x;
 	*x=*y;
 	*y=temp;
@@ -158,7 +165,7 @@ int c=10;
 Point medianOfMedians(std::vector<Point> &points,int l,int r,int k)
 {	//dividing into buckets
 	//printf("arguments: l:%d r:%d k:%d\n",l,r,k );
-	
+
 	c--;
 	if(c<0)
 		exit(0);
@@ -193,13 +200,36 @@ Point medianOfMedians(std::vector<Point> &points,int l,int r,int k)
 	else if(k>medianPosition - l) return medianOfMedians(points,medianPosition + 1, r, k - medianPosition - 1 +  l );
 	else return medianOfMedians(points,l,medianPosition - 1, k);
 }
-
+pair<Point,Point> upperBridge(std::vector<Point> S,Point L)
+{
+	std::vector<Point> candidates;
+	if(S.size()==2)
+		return make_pair(S[0],S[1]);
+	
+}
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
 {
+	Point a=medianOfMedians(points,0,num_points-1,num_points/2);
+	a.printPoint();
+	vector<Point> TLeft,TRight;
+	for(int i=0;i<num_points;i++)
+	{
+		if(points[i].getX()<a.getX())
+		{
+			TLeft.push_back(points[i]);
+		}
+		else if(points[i].getX()>a.getX())
+		{
+			TRight.push_back(points[i]);
+		}
+	}
+	upperBridge(points,a);
 }
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
 {
 }
+
+
 
 int main(int argc, char** argv)
 {
@@ -228,17 +258,16 @@ int main(int argc, char** argv)
 	vector<int> hullKPS;
 	kPS(hullKPS,points,num_points);
 
-	std::vector<Point> v;
-	for(int i=0;i<10;i++)
-		v.push_back(Point(10-i,10-i));
-	for(int i=0;i<10;i++)
-		v.push_back(Point(100-i,100-i));
+	// std::vector<Point> v;
+	// for(int i=0;i<10;i++)
+	// 	v.push_back(Point(10-i,10-i));
+	// for(int i=0;i<10;i++)
+	// 	v.push_back(Point(100-i,100-i));
 
-	printf("points:\n");
-	for(int i=0;i<v.size();i++)
-		v[i].printPoint();
-
-	medianOfMedians(v,0,v.size()-1,v.size()/2).printPoint();
+	// printf("points:\n");
+	// for(int i=0;i<v.size();i++)
+	// 	v[i].printPoint();
+	// medianOfMedians(v,0,v.size()-1,v.size()/2).printPoint();
 	// jarvisMarch(hullJM,points,num_points);
 	// std::ofstream outputJM("./outputJM/output7JM.txt");
 	// int num_points_hull=hullJM.size();
