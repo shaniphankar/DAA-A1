@@ -7,6 +7,7 @@
 class GeomOps
 {
     public:
+        std::vector<Point> highestYIntersection(std::vector<Point> points, double k);
         double getDistance(Point p1,Point p2);
         double getAngle(Point p1,Point p2);
         int getLeftMost(std::vector<Point> points,int num_points);

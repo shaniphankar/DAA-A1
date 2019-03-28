@@ -1,7 +1,26 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include "Point.h"
 #include "GeomOps.h"
+
+std::vector<Point> GeomOps::highestYIntersection(std::vector<Point> points, double k)
+{
+    int maxP=0;
+    for(int i=1;i<points.size();i++)
+    {
+        if((points[i].getY()-k*points[i].getX())>(points[maxP].getY()-k*points[maxP].getX()))
+            maxP=i;
+    }
+    std::vector<Point> max;
+    for(int i=0;i<points.size();i++)
+    {
+        if((points[i].getY()-k*points[i].getX())==(points[maxP].getY()-k*points[maxP].getX()))
+            max.push_back(points[i]);
+    }
+    return max;
+}
+
 double GeomOps::getDistance(Point p1, Point p2)
 {
     return sqrt(pow(p1.getY()-p2.getY(),2)+pow(p1.getX()-p2.getX(),2));
