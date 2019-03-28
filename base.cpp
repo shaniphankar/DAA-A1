@@ -195,18 +195,33 @@ int main(int argc, char** argv)
 	vector<int> hullGS;
 	vector<int> hullJM;
 	vector<int> hullKPS;
-	// kPS(hullKPS,points,num_points);
+	kPS(hullKPS,points,num_points);
 
-	std::vector<Point> v;
-	for(int i=0;i<10;i++)
-		v.push_back(Point(10-i,10-i));
+	// // Testing medianOfMedians for POints
+	// std::vector<Point> v;
 	// for(int i=0;i<10;i++)
-	// 	v.push_back(Point(100-i,100-i));
+	// 	v.push_back(Point(10-i,10-i));
+	// // for(int i=0;i<10;i++)
+	// // 	v.push_back(Point(100-i,100-i));
 
-	printf("points:\n");
-	for(int i=0;i<v.size();i++)
-		v[i].printPoint();
-	vecAPI.medianOfMedians(v,0,v.size()-1,v.size()/2).printPoint();
+	// printf("points:\n");
+	// for(int i=0;i<v.size();i++)
+	// 	v[i].printPoint();
+	// vecAPI.medianOfMedians(v,0,v.size()-1,v.size()/2).printPoint();
+	
+	// //Testing medianOfMedians for Double
+	// std::vector<double> v;
+	// for(int i=0;i<10;i++)
+	// 	v.push_back(10-i);
+	// // for(int i=0;i<10;i++)
+	// // 	v.push_back(Point(100-i,100-i));
+
+	// printf("points:\n");
+	// for(int i=0;i<v.size();i++)
+	// 	cout<<v[i]<<endl;
+	// cout<<vecAPI.medianOfMedians(v,0,v.size()-1,v.size()/2);
+	
+
 	// jarvisMarch(hullJM,points,num_points);
 	// std::ofstream outputJM("./outputJM/output7JM.txt");
 	// int num_points_hull=hullJM.size();

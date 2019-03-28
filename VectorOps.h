@@ -7,6 +7,9 @@
 class VectorOps
 {
     public:
+    	void swap(double* x,double* y);
+    	int medianPartition(std::vector<double> &points,int l,int r,double x);
+        double medianOfMedians(std::vector<double> &points,int l,int r,int k);
         void swap(Point* x,Point* y);
         int medianPartition(std::vector<Point> &points,int l,int r,Point x);
         static bool sortByX(Point a,Point b);
