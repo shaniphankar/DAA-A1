@@ -235,6 +235,27 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 	cout<<"Depth="<<depth<<"UpperBridge\n";
 	upBridge.first.printPoint();
 	upBridge.second.printPoint();
+	vector<Point> TLeft,TRight;
+	double mL=(upBridge.first.getY()-pMin.getY())/(upBridge.first.getX()-pMin.getX());
+	double mR=(upBridge.second.getY()-pMax.getY())/(upBridge.second.getX()-pMax.getX());
+	for(int i=0;i<points.size();i++)
+	{
+		if(points[i].getY()>(mL*(points[i].getX()-pMin.getX())+pMin.getY()))
+			TLeft.push_back(points[i]);
+	}
+	for(int i=0;i<points.size();i++)
+	{
+		if(points[i].getY()>(mR*(points[i].getX()-pMax.getX())+pMax.getY()))
+			TRight.push_back(points[i]);
+	}
+	// pair<Point,Point> upBridgeL=upperHull(pMin,upBridge.first,TLeft,TLeft.size()-1,depth+1);
+	// pair<Point,Point> upBridgeR=upperHull(upBridge.second,pMax,TRight,TRight.size()-1,depth+1);
+	// cout<<"Depth="<<depth<<"UpperBridgeLeft\n";
+	// upBridgeL.first.printPoint();
+	// upBridgeL.second.printPoint();
+	// cout<<"Depth="<<depth<<"UpperBridgeRight\n";
+	// upBridgeR.first.printPoint();
+	// upBridgeR.second.printPoint();
 }
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
 {
