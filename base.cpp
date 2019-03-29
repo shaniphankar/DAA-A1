@@ -120,6 +120,8 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 	cout<<"Depth = "<<depth<<endl;
 	if(depth==20)
 		return make_pair(Point(0,0),Point(0,0));
+	Point med=vecAPI.medianOfMedians(S,0,S.size()-1,S.size()/2);
+	vecAPI.medianPartition(S,0,S.size()-1,med);
 	for(int i=0;i<S.size();i++)
 	{
 		S[i].printPoint();
@@ -127,13 +129,14 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 	if(S.size()==2)
 		return make_pair(S[0],S[1]);
 	vector<pair<Point,Point>> pairs;
-	for(int i=0;i<num_points;i=i+2)
+	int i;
+	for(i=0;i<num_points/2;i++)
 	{
-		pairs.push_back(make_pair(S[i],S[i+1]));
+		pairs.push_back(make_pair(S[i],S[num_points-i-1]));
 	}
 	if(num_points%2==1)
 	{
-		candidates.push_back(S[num_points-1]);
+		candidates.push_back(S[i]);
 	}
 	vector<pair<double,pair<Point,Point>>> K;
 	for(int i=0;i<pairs.size();i++)
@@ -185,7 +188,7 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 	{
 		return make_pair(pk,pm);
 	}
-	if(pm.getX()<=L.getX())
+	if(pm.getX()<L.getX())
 	{
 		for(int i=0;i<large.size();i++)
 		{
@@ -241,7 +244,7 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input2.txt");
+	std::ifstream input("./input/input3.txt");
 	//std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
