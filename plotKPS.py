@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import os
-num=3
+num=1
 type="KPS"
 if __name__=='__main__':
 	pathPointsFull=os.getcwd()+'/input/input'+str(num)+'.txt'
@@ -21,12 +21,35 @@ if __name__=='__main__':
 	for line in pointsFile.readlines():
 		pointsX.append((float)(line[:-1].split(" ")[0]))
 		pointsY.append((float)(line[:-1].split(" ")[1]))
-	print(pointsX)
-	print(pointsY)
+	
+
+	# pathPoints=os.getcwd()+'/output'+type+'/output'+str(num)+type+'.txt'
+	# pointsFile=open(pathPoints,'r')
+	# pointsX=[]
+	# pointsY=[]
+	# for line in pointsFile.readlines():
+	# 	pointsX.append((float)(line[:-1].split(" ")[0]))
+	# 	pointsY.append((float)(line[:-1].split(" ")[1]))
+	# print(pointsX)
+	# print(pointsY)
+	
+	# pathPointsLow=os.getcwd()+'/output'+type+'/output'+str(num)+type+'Low.txt'
+	# pointsFileLow=open(pathPointsLow,'r')
+	# pointsXLow=[]
+	# pointsYLow=[]
+	# for line in pointsFileLow.readlines():
+	# 	pointsXLow.append((float)(line[:-1].split(" ")[0]))
+	# 	pointsYLow.append((float)(line[:-1].split(" ")[1]))
+	# print(pointsXLow)
+	# print(pointsYLow)
+	
+
 	plt.axis([-0.6,0.6,-0.6,0.6])
 	plt.scatter(pointsXFull,pointsYFull,c='k')
 	plt.plot(pointsX,pointsY,'g')
-	plt.savefig(os.getcwd()+'/plotsKPS/'+str(num)+'/plotUPJM.png')
+	# plt.plot(pointsXLow,pointsYLow,'g')
+	# plt.savefig(os.getcwd()+'/plotsKPS/'+str(num)+'/plotLOJM.png')
+	plt.savefig(os.getcwd()+'/plotsKPS/'+str(num)+'/plotFullJM.png')
 
 	# pointsX=[]
 	# pointsY=[]

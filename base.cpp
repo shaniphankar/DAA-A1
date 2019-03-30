@@ -108,10 +108,15 @@ vector<Point> kPS(vector<Point> points,int num_points)
 		}
 	}
 
-	// vector<Point> hullUp=upperHull(pUMin,pUMax,TUp,TUp.size(),0);
+	vector<Point> hullUp=upperHull(pUMin,pUMax,TUp,TUp.size(),0);
 	// return hullUp;
 	vector<Point> hullLo=lowerHull(pLMin,pLMax,TLo,TLo.size(),0);
-	return hullLo;
+	vector<Point> hull;
+	for(int i=0;i<hullUp.size();i++)
+		hull.push_back(hullUp[i]);
+	for(int i=hullLo.size()-1;i>=0;i--)
+		hull.push_back(hullLo[i]);
+	return hull;
 	// std::vector<Point> uHull=upperHull(pUMin,pUMax,TUp,TUp.size());
 	// std::vector<Point> lHull=lowerHull(pLMin,pLMax,TLo,TLo.size());
 }
@@ -438,7 +443,7 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input2.txt");
+	std::ifstream input("./input/input1.txt");
 	//std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
@@ -499,10 +504,17 @@ int main(int argc, char** argv)
 	//     cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
 	// }
 
-	// std::ofstream outputKPS("./outputKPS/output7KPS.txt");
+	// std::ofstream outputKPS("./outputKPS/output2KPS.txt");
 	// int num_points_hull=hullKPS.size();
 	// for(int i=0;i<num_points_hull;i++)
 	// {
 	// 	outputKPS<<hullKPS[i].getX()<<" "<<hullKPS[i].getY()<<"\n";
 	// }
+
+	std::ofstream outputKPS("./outputKPS/output1KPS.txt");
+	int num_points_hull=hullKPS.size();
+	for(int i=0;i<num_points_hull;i++)
+	{
+		outputKPS<<hullKPS[i].getX()<<" "<<hullKPS[i].getY()<<"\n";
+	}
 }
