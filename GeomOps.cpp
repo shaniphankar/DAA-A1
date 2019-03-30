@@ -21,6 +21,24 @@ std::vector<Point> GeomOps::highestYIntersection(std::vector<Point> points, doub
     return max;
 }
 
+std::vector<Point> GeomOps::lowestYIntersection(std::vector<Point> points, double k)
+{
+    int minP=0;
+    for(int i=1;i<points.size();i++)
+    {
+        if((points[i].getY()-k*points[i].getX())<(points[minP].getY()-k*points[minP].getX()))
+            minP=i;
+    }
+    std::vector<Point> min;
+    for(int i=0;i<points.size();i++)
+    {
+        if((points[i].getY()-k*points[i].getX())==(points[minP].getY()-k*points[minP].getX()))
+            min.push_back(points[i]);
+    }
+    return min;
+}
+
+
 double GeomOps::getDistance(Point p1, Point p2)
 {
     return sqrt(pow(p1.getY()-p2.getY(),2)+pow(p1.getX()-p2.getX(),2));
