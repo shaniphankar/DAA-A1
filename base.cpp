@@ -118,13 +118,13 @@ vector<Point> kPS(vector<Point> points,int num_points)
 pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int depth)
 {
 	vector<Point> candidates;
-	// cout<<"Bridge depth = "<<depth<<endl;
+	cout<<"Bridge depth = "<<depth<<endl;
 	Point med=vecAPI.medianOfMedians(S,0,S.size()-1,S.size()/2);
 	vecAPI.medianPartition(S,0,S.size()-1,med);
-	// for(int i=0;i<S.size();i++)
-	// {
-	// 	S[i].printPoint();
-	// }
+	for(int i=0;i<S.size();i++)
+	{
+		S[i].printPoint();
+	}
 	if(S.size()==2)
 		return make_pair(S[0],S[1]);
 	vector<pair<Point,Point>> pairs;
@@ -177,10 +177,10 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 		}
 	}
 	vector<Point> max=geomAPI.highestYIntersection(S,k);
-	// for(int i=0;i<max.size();i++)
-	// {
-	// 	max[i].printPoint();
-	// }
+	for(int i=0;i<max.size();i++)
+	{
+		max[i].printPoint();
+	}
 	Point pk=max[geomAPI.getLeftMost(max,max.size())];
 	Point pm=max[geomAPI.getRightMost(max,max.size())];
 	if(pk.getX()<=L.getX()&&pm.getY()>L.getX()&&max.size()!=1)
@@ -219,11 +219,11 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 			candidates.push_back(large[i].second);
 		}
 	}
-	// cout<<"Candidates for Bridge depth ="<<depth+1<<endl;
-	// for(int i=0;i<candidates.size();i++)
-	// {
-	// 	candidates[i].printPoint();
-	// }
+	cout<<"Candidates for Bridge depth ="<<depth+1<<endl;
+	for(int i=0;i<candidates.size();i++)
+	{
+		candidates[i].printPoint();
+	}
 	return upperBridge(candidates,candidates.size(),L,depth+1);
 }
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth)
@@ -231,9 +231,9 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 	Point a=vecAPI.medianOfMedians(points,0,num_points-1,num_points/2);
 	// a.printPoint();
 	pair<Point,Point> upBridge=upperBridge(points,num_points,a,0);
-	// cout<<"Hull Depth="<<depth<<"\nUpperBridge\n";
-	// upBridge.first.printPoint();
-	// upBridge.second.printPoint();
+	cout<<"Hull Depth="<<depth<<"\nUpperBridge\n";
+	upBridge.first.printPoint();
+	upBridge.second.printPoint();
 	vector<Point> TLeft,TRight;
 	TLeft.push_back(upBridge.first);
 	TRight.push_back(upBridge.second);
@@ -241,22 +241,26 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 	double mR=(upBridge.second.getY()-pMax.getY())/(upBridge.second.getX()-pMax.getX());
 	for(int i=0;i<points.size();i++)
 	{
-		if(points[i].getY()>(mL*(points[i].getX()-pMin.getX())+pMin.getY()))
+		if((points[i].getX()<upBridge.first.getX())&&points[i].getY()>(mL*(points[i].getX()-pMin.getX())+pMin.getY()))
 			TLeft.push_back(points[i]);
 	}
 	for(int i=0;i<points.size();i++)
 	{
-		if(points[i].getY()>(mR*(points[i].getX()-pMax.getX())+pMax.getY()))
+		if((points[i].getX()>upBridge.second.getX())&&points[i].getY()>(mR*(points[i].getX()-pMax.getX())+pMax.getY()))
 			TRight.push_back(points[i]);
 	}
-	// cout<<"TLeft size "<<TLeft.size()<<endl;
-	// cout<<"TRight size "<<TRight.size()<<endl;
+	cout<<"TLeft size"<<TLeft.size()<<endl;
+	for(int i=0;i<TLeft.size();i++)
+		TLeft[i].printPoint();
+	cout<<"TRight size "<<TRight.size()<<endl;
+	for(int i=0;i<TRight.size();i++)
+		TRight[i].printPoint();
 	vector<Point> upHullL;
 	vector<Point> upHullR;
 	if(TLeft.size()>=2)
-		upHullL=upperHull(pMin,upBridge.first,TLeft,TLeft.size()-1,depth+1);
+		upHullL=upperHull(pMin,upBridge.first,TLeft,TLeft.size(),depth+1);
 	if(TRight.size()>=2)
-		upHullR=upperHull(upBridge.second,pMax,TRight,TRight.size()-1,depth+1);
+		upHullR=upperHull(upBridge.second,pMax,TRight,TRight.size(),depth+1);
 	vector<Point> hull;
 	for(int i=0;i<upHullL.size();i++)
 	{
@@ -278,7 +282,7 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input2.txt");
+	std::ifstream input("./input/input7.txt");
 	//std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
@@ -339,7 +343,7 @@ int main(int argc, char** argv)
 	//     cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
 	// }
 
-	std::ofstream outputKPS("./outputKPS/output2KPS.txt");
+	std::ofstream outputKPS("./outputKPS/output7KPS.txt");
 	int num_points_hull=hullKPS.size();
 	for(int i=0;i<num_points_hull;i++)
 	{

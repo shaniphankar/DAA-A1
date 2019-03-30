@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import os
-num=2
+num=3
 type="KPS"
 if __name__=='__main__':
 	pathPointsFull=os.getcwd()+'/input/input'+str(num)+'.txt'
