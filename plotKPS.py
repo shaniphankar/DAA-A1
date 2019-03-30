@@ -26,7 +26,7 @@ if __name__=='__main__':
 	plt.axis([-0.6,0.6,-0.6,0.6])
 	plt.scatter(pointsXFull,pointsYFull,c='k')
 	plt.plot(pointsX,pointsY,'g')
-	plt.show()
+	plt.savefig(os.getcwd()+'/plotsKPS/'+str(num)+'/plotUPJM.png')
 
 	# pointsX=[]
 	# pointsY=[]
