@@ -52,7 +52,7 @@ void jarvisMarch(vector<int> &hull, vector<Point> points,int num_points)
 }
 
 
-void kPS(vector<int> &hull, vector<Point> points,int num_points)
+vector<Point> kPS(vector<Point> points,int num_points)
 {
 	Point pUMin,pUMax,pLMin,pLMax;
 	vector<Point> lMostVec=geomAPI.getLeftMostMultiple(points,num_points);
@@ -108,7 +108,8 @@ void kPS(vector<int> &hull, vector<Point> points,int num_points)
 		}
 	}
 
-	upperHull(pUMin,pUMax,TUp,TUp.size(),0);
+	vector<Point> hullUp=upperHull(pUMin,pUMax,TUp,TUp.size(),0);
+	return hullUp;
 	// std::vector<Point> uHull=upperHull(pUMin,pUMax,TUp,TUp.size());
 	// std::vector<Point> lHull=lowerHull(pLMin,pLMax,TLo,TLo.size());
 }
@@ -117,15 +118,13 @@ void kPS(vector<int> &hull, vector<Point> points,int num_points)
 pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int depth)
 {
 	vector<Point> candidates;
-	cout<<"Depth = "<<depth<<endl;
-	if(depth==20)
-		return make_pair(Point(0,0),Point(0,0));
+	// cout<<"Bridge depth = "<<depth<<endl;
 	Point med=vecAPI.medianOfMedians(S,0,S.size()-1,S.size()/2);
 	vecAPI.medianPartition(S,0,S.size()-1,med);
-	for(int i=0;i<S.size();i++)
-	{
-		S[i].printPoint();
-	}
+	// for(int i=0;i<S.size();i++)
+	// {
+	// 	S[i].printPoint();
+	// }
 	if(S.size()==2)
 		return make_pair(S[0],S[1]);
 	vector<pair<Point,Point>> pairs;
@@ -188,7 +187,7 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 	{
 		return make_pair(pk,pm);
 	}
-	if(pm.getX()<L.getX())
+	if(pm.getX()<=L.getX())
 	{
 		for(int i=0;i<large.size();i++)
 		{
@@ -204,7 +203,7 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 			candidates.push_back(small[i].second);
 		}
 	}
-	else if(pk.getX()>L.getX())
+	if(pk.getX()>L.getX())
 	{
 		for(int i=0;i<small.size();i++)
 		{
@@ -220,22 +219,24 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 			candidates.push_back(large[i].second);
 		}
 	}
-	cout<<"Candidates for depth ="<<depth+1<<endl;
-	for(int i=0;i<candidates.size();i++)
-	{
-		candidates[i].printPoint();
-	}
+	// cout<<"Candidates for Bridge depth ="<<depth+1<<endl;
+	// for(int i=0;i<candidates.size();i++)
+	// {
+	// 	candidates[i].printPoint();
+	// }
 	return upperBridge(candidates,candidates.size(),L,depth+1);
 }
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth)
 {
 	Point a=vecAPI.medianOfMedians(points,0,num_points-1,num_points/2);
-	a.printPoint();
+	// a.printPoint();
 	pair<Point,Point> upBridge=upperBridge(points,num_points,a,0);
-	cout<<"Depth="<<depth<<"UpperBridge\n";
-	upBridge.first.printPoint();
-	upBridge.second.printPoint();
+	// cout<<"Hull Depth="<<depth<<"\nUpperBridge\n";
+	// upBridge.first.printPoint();
+	// upBridge.second.printPoint();
 	vector<Point> TLeft,TRight;
+	TLeft.push_back(upBridge.first);
+	TRight.push_back(upBridge.second);
 	double mL=(upBridge.first.getY()-pMin.getY())/(upBridge.first.getX()-pMin.getX());
 	double mR=(upBridge.second.getY()-pMax.getY())/(upBridge.second.getX()-pMax.getX());
 	for(int i=0;i<points.size();i++)
@@ -248,14 +249,26 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 		if(points[i].getY()>(mR*(points[i].getX()-pMax.getX())+pMax.getY()))
 			TRight.push_back(points[i]);
 	}
-	// pair<Point,Point> upBridgeL=upperHull(pMin,upBridge.first,TLeft,TLeft.size()-1,depth+1);
-	// pair<Point,Point> upBridgeR=upperHull(upBridge.second,pMax,TRight,TRight.size()-1,depth+1);
-	// cout<<"Depth="<<depth<<"UpperBridgeLeft\n";
-	// upBridgeL.first.printPoint();
-	// upBridgeL.second.printPoint();
-	// cout<<"Depth="<<depth<<"UpperBridgeRight\n";
-	// upBridgeR.first.printPoint();
-	// upBridgeR.second.printPoint();
+	// cout<<"TLeft size "<<TLeft.size()<<endl;
+	// cout<<"TRight size "<<TRight.size()<<endl;
+	vector<Point> upHullL;
+	vector<Point> upHullR;
+	if(TLeft.size()>=2)
+		upHullL=upperHull(pMin,upBridge.first,TLeft,TLeft.size()-1,depth+1);
+	if(TRight.size()>=2)
+		upHullR=upperHull(upBridge.second,pMax,TRight,TRight.size()-1,depth+1);
+	vector<Point> hull;
+	for(int i=0;i<upHullL.size();i++)
+	{
+		hull.push_back(upHullL[i]);
+	}
+	hull.push_back(upBridge.first);
+	hull.push_back(upBridge.second);
+	for(int i=0;i<upHullR.size();i++)
+	{
+		hull.push_back(upHullR[i]);
+	}
+	return hull;
 }
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points)
 {
@@ -265,7 +278,7 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input3.txt");
+	std::ifstream input("./input/input2.txt");
 	//std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
@@ -287,9 +300,10 @@ int main(int argc, char** argv)
 	}
 	vector<int> hullGS;
 	vector<int> hullJM;
-	vector<int> hullKPS;
-	kPS(hullKPS,points,num_points);
-
+	vector<Point> hullKPS;
+	hullKPS=kPS(points,num_points);
+	for(int i=0;i<hullKPS.size();i++)
+		hullKPS[i].printPoint();
 	// // Testing medianOfMedians for POints
 	// std::vector<Point> v;
 	// for(int i=0;i<10;i++)
@@ -324,4 +338,11 @@ int main(int argc, char** argv)
 	//     output<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<"\n";
 	//     cout<<hullJM[i]<<" "<<hullJM[(i+1)%num_points_hull]<<endl;
 	// }
+
+	std::ofstream outputKPS("./outputKPS/output2KPS.txt");
+	int num_points_hull=hullKPS.size();
+	for(int i=0;i<num_points_hull;i++)
+	{
+		outputKPS<<hullKPS[i].getX()<<" "<<hullKPS[i].getY()<<"\n";
+	}
 }
