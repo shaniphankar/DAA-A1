@@ -193,7 +193,7 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 	// }
 	Point pk=max[geomAPI.getLeftMost(max,max.size())];
 	Point pm=max[geomAPI.getRightMost(max,max.size())];
-	if(pk.getX()<=L.getX()&&pm.getY()>L.getX()&&max.size()!=1)
+	if(pk.getX()<=L.getX()&&pm.getX()>L.getX()&&max.size()!=1)
 	{
 		return make_pair(pk,pm);
 	}
@@ -261,6 +261,8 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 	vector<Point> TLeft,TRight;
 	TLeft.push_back(upBridge.first);
 	TRight.push_back(upBridge.second);
+	TLeft.push_back(pMin);
+	TRight.push_back(pMax);
 	double mL=(upBridge.first.getY()-pMin.getY())/(upBridge.first.getX()-pMin.getX());
 	double mR=(upBridge.second.getY()-pMax.getY())/(upBridge.second.getX()-pMax.getX());
 	for(int i=0;i<points.size();i++)
@@ -435,6 +437,8 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 	vector<Point> TLeft,TRight;
 	TLeft.push_back(lowBridge.first);
 	TRight.push_back(lowBridge.second);
+	TLeft.push_back(pMin);
+	TRight.push_back(pMax);
 	double mL=(lowBridge.first.getY()-pMin.getY())/(lowBridge.first.getX()-pMin.getX());
 	double mR=(lowBridge.second.getY()-pMax.getY())/(lowBridge.second.getX()-pMax.getX());
 	for(int i=0;i<points.size();i++)
@@ -473,7 +477,7 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input2.txt");
+	std::ifstream input("./input/input8.txt");
 	//std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
@@ -541,7 +545,7 @@ int main(int argc, char** argv)
 	// 	outputKPS<<hullKPS[i].getX()<<" "<<hullKPS[i].getY()<<"\n";
 	// }
 
-	std::ofstream outputKPS("./outputKPS/output2KPS.txt");
+	std::ofstream outputKPS("./outputKPS/output8KPS.txt");
 	int num_points_hull=hullKPS.size();
 	for(int i=0;i<num_points_hull;i++)
 	{
