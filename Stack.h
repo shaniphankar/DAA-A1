@@ -4,6 +4,11 @@
 #include <vector>
 #define MAX 10000
 template<class T>
+/*! \class Stack
+    \brief Simple Stack implementation
+
+This class defines a stack and its important functions for respective objects using template.
+*/
 class Stack
 {
 	public:

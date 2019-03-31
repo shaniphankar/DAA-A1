@@ -18,6 +18,7 @@ class GeomOps
         std::vector<Point> getLeftMostMultiple(std::vector<Point> points,int num_points);
         std::vector<Point> getRightMostMultiple(std::vector<Point> points,int num_points);
         int getOrientation(Point p1,Point p2, Point p3);
+        std::vector<Point> getBottomMostPoints(std::vector<Point> points,int num_points);
 };
 
 #endif

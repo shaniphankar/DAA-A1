@@ -14,6 +14,8 @@ class VectorOps
         int medianPartition(std::vector<Point> &points,int l,int r,Point x);
         static bool sortByX(Point a,Point b);
         Point medianOfMedians(std::vector<Point> &points,int l,int r,int k);
+        int findIndex(std::vector<Point> points,Point p);
+
 };
 
 #endif

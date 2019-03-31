@@ -1,0 +1,234 @@
+\hypertarget{base_8cpp}{}\section{base.\+cpp File Reference}
+\label{base_8cpp}\index{base.\+cpp@{base.\+cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include \char`\"{}Point.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Stack.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Geom\+Ops.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Vector\+Ops.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+Include dependency graph for base.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{base_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{base_8cpp_a8d58e214b7b5b075466aecc6c0c295ed}{k0}~5
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{base_8cpp_aaf086374b67db32dc76ec43ba7158b0a}{upper\+Hull} (\hyperlink{classPoint}{Point} p\+Min, \hyperlink{classPoint}{Point} p\+Max, std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points, int depth)
+\item 
+std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{base_8cpp_a716ae214ced649159d3ab9c0aa46c8a6}{lower\+Hull} (\hyperlink{classPoint}{Point} p\+Min, \hyperlink{classPoint}{Point} p\+Max, std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points, int depth)
+\item 
+bool \hyperlink{base_8cpp_a12eda38a151ca94e4b50b21d0d6ae028}{comparator} (\hyperlink{classPoint}{Point} p1, \hyperlink{classPoint}{Point} p2)
+\item 
+vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{base_8cpp_a40da521b25e7c5fc8c40f1362695a64a}{graham\+Scan} (vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+void \hyperlink{base_8cpp_a7f49339c6980bcdff628dc6a44456c34}{jarvis\+March} (vector$<$ int $>$ \&hull, vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{base_8cpp_a322f277b070fa996aa7f5188b37d9937}{k\+PS} (vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+pair$<$ \hyperlink{classPoint}{Point}, \hyperlink{classPoint}{Point} $>$ \hyperlink{base_8cpp_aa2c1ef29af92ec11da3690a09f503704}{upper\+Bridge} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ S, int num\+\_\+points, \hyperlink{classPoint}{Point} L, int depth)
+\item 
+pair$<$ \hyperlink{classPoint}{Point}, \hyperlink{classPoint}{Point} $>$ \hyperlink{base_8cpp_a4a7415faa1cd0bc5e7cf0dca52bd784d}{lower\+Bridge} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ S, int num\+\_\+points, \hyperlink{classPoint}{Point} L, int depth)
+\item 
+int \hyperlink{base_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGeomOps}{Geom\+Ops} \hyperlink{base_8cpp_aff7f7c491b6084f51cbd483d49675da4}{geom\+A\+PI}
+\begin{DoxyCompactList}\small\item\em Provides all the geometrical operations useful for various convex hull methods (imported file) \end{DoxyCompactList}\item 
+\hyperlink{classVectorOps}{Vector\+Ops} \hyperlink{base_8cpp_aa9702cb712e0ee9d47c426c78a40f8f7}{vec\+A\+PI}
+\begin{DoxyCompactList}\small\item\em Provides all the median algorithms required for convex hull algorithms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{base_8cpp_a8d58e214b7b5b075466aecc6c0c295ed}\label{base_8cpp_a8d58e214b7b5b075466aecc6c0c295ed}} 
+\index{base.\+cpp@{base.\+cpp}!k0@{k0}}
+\index{k0@{k0}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{k0}{k0}}
+{\footnotesize\ttfamily \#define k0~5}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{base_8cpp_a12eda38a151ca94e4b50b21d0d6ae028}\label{base_8cpp_a12eda38a151ca94e4b50b21d0d6ae028}} 
+\index{base.\+cpp@{base.\+cpp}!comparator@{comparator}}
+\index{comparator@{comparator}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{comparator()}{comparator()}}
+{\footnotesize\ttfamily bool comparator (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{p1,  }\item[{\hyperlink{classPoint}{Point}}]{p2 }\end{DoxyParamCaption})}
+
+This function helps in comparing signed area of two points w.\+r.\+t reference base point \mbox{\Hypertarget{base_8cpp_a40da521b25e7c5fc8c40f1362695a64a}\label{base_8cpp_a40da521b25e7c5fc8c40f1362695a64a}} 
+\index{base.\+cpp@{base.\+cpp}!graham\+Scan@{graham\+Scan}}
+\index{graham\+Scan@{graham\+Scan}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{graham\+Scan()}{grahamScan()}}
+{\footnotesize\ttfamily vector$<$\hyperlink{classPoint}{Point}$>$ graham\+Scan (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This function gives the points on convec hull for the input set using Graham Scan algorithm 
+\begin{DoxyParams}{Parameters}
+{\em points} & input set of points \\
+\hline
+{\em num\+\_\+points} & number of points in input \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return points on the convex hull 
+\end{DoxyReturn}
+\mbox{\Hypertarget{base_8cpp_a7f49339c6980bcdff628dc6a44456c34}\label{base_8cpp_a7f49339c6980bcdff628dc6a44456c34}} 
+\index{base.\+cpp@{base.\+cpp}!jarvis\+March@{jarvis\+March}}
+\index{jarvis\+March@{jarvis\+March}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{jarvis\+March()}{jarvisMarch()}}
+{\footnotesize\ttfamily void jarvis\+March (\begin{DoxyParamCaption}\item[{vector$<$ int $>$ \&}]{hull,  }\item[{vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This function gives convex hull for a set of points using Jarvis March Algorithm 
+\begin{DoxyParams}{Parameters}
+{\em hull} & This is the hull vector to be filled using the algorithm \\
+\hline
+{\em points} & This is the set of input points \\
+\hline
+{\em num\+\_\+points} & Number of points in input \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{base_8cpp_a322f277b070fa996aa7f5188b37d9937}\label{base_8cpp_a322f277b070fa996aa7f5188b37d9937}} 
+\index{base.\+cpp@{base.\+cpp}!k\+PS@{k\+PS}}
+\index{k\+PS@{k\+PS}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{k\+P\+S()}{kPS()}}
+{\footnotesize\ttfamily vector$<$\hyperlink{classPoint}{Point}$>$ k\+PS (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This function gives convex hull for a set of points using Kirkpatrick Siedel Algorithm 
+\begin{DoxyParams}{Parameters}
+{\em points} & Set of input points \\
+\hline
+{\em number} & of points in input \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+set of points in hull 
+\end{DoxyReturn}
+\mbox{\Hypertarget{base_8cpp_a4a7415faa1cd0bc5e7cf0dca52bd784d}\label{base_8cpp_a4a7415faa1cd0bc5e7cf0dca52bd784d}} 
+\index{base.\+cpp@{base.\+cpp}!lower\+Bridge@{lower\+Bridge}}
+\index{lower\+Bridge@{lower\+Bridge}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{lower\+Bridge()}{lowerBridge()}}
+{\footnotesize\ttfamily pair$<$\hyperlink{classPoint}{Point},\hyperlink{classPoint}{Point}$>$ lower\+Bridge (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{S,  }\item[{int}]{num\+\_\+points,  }\item[{\hyperlink{classPoint}{Point}}]{L,  }\item[{int}]{depth }\end{DoxyParamCaption})}
+
+This function finds of lower bridge line described by the two points 
+\begin{DoxyParams}{Parameters}
+{\em S} & input set of points \\
+\hline
+{\em num\+\_\+points} & number of points in input \\
+\hline
+{\em L} & median line described by a point \\
+\hline
+{\em depth} & number of times the function has recursed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns a pair of points describing lower bridge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{base_8cpp_a716ae214ced649159d3ab9c0aa46c8a6}\label{base_8cpp_a716ae214ced649159d3ab9c0aa46c8a6}} 
+\index{base.\+cpp@{base.\+cpp}!lower\+Hull@{lower\+Hull}}
+\index{lower\+Hull@{lower\+Hull}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{lower\+Hull()}{lowerHull()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ lower\+Hull (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{p\+Min,  }\item[{\hyperlink{classPoint}{Point}}]{p\+Max,  }\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points,  }\item[{int}]{depth }\end{DoxyParamCaption})}
+
+This function calculates lower hull from given set of points 
+\begin{DoxyParams}{Parameters}
+{\em p\+Min} & \hyperlink{classPoint}{Point} with minimum x coordinate \\
+\hline
+{\em p\+Max} & \hyperlink{classPoint}{Point} with maximum x coordinate \\
+\hline
+{\em points} & set of input points \\
+\hline
+{\em num\+\_\+points} & number of points in input \\
+\hline
+{\em depth} & number of times the function is recursed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a set of points in lower hull 
+\end{DoxyReturn}
+\mbox{\Hypertarget{base_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{base_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{base.\+cpp@{base.\+cpp}!main@{main}}
+\index{main@{main}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{base_8cpp_aa2c1ef29af92ec11da3690a09f503704}\label{base_8cpp_aa2c1ef29af92ec11da3690a09f503704}} 
+\index{base.\+cpp@{base.\+cpp}!upper\+Bridge@{upper\+Bridge}}
+\index{upper\+Bridge@{upper\+Bridge}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{upper\+Bridge()}{upperBridge()}}
+{\footnotesize\ttfamily pair$<$\hyperlink{classPoint}{Point},\hyperlink{classPoint}{Point}$>$ upper\+Bridge (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{S,  }\item[{int}]{num\+\_\+points,  }\item[{\hyperlink{classPoint}{Point}}]{L,  }\item[{int}]{depth }\end{DoxyParamCaption})}
+
+This function finds of upper bridge line described by the two points 
+\begin{DoxyParams}{Parameters}
+{\em S} & input set of points \\
+\hline
+{\em num\+\_\+points} & number of points in input \\
+\hline
+{\em L} & median line described by a point \\
+\hline
+{\em depth} & number of times the function has recursed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns a pair of points describing upper bridge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{base_8cpp_aaf086374b67db32dc76ec43ba7158b0a}\label{base_8cpp_aaf086374b67db32dc76ec43ba7158b0a}} 
+\index{base.\+cpp@{base.\+cpp}!upper\+Hull@{upper\+Hull}}
+\index{upper\+Hull@{upper\+Hull}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{upper\+Hull()}{upperHull()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ upper\+Hull (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{p\+Min,  }\item[{\hyperlink{classPoint}{Point}}]{p\+Max,  }\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points,  }\item[{int}]{depth }\end{DoxyParamCaption})}
+
+This function calculates upper hull from given set of points 
+\begin{DoxyParams}{Parameters}
+{\em p\+Min} & \hyperlink{classPoint}{Point} with minimum x coordinate \\
+\hline
+{\em p\+Max} & \hyperlink{classPoint}{Point} with maximum x coordinate \\
+\hline
+{\em points} & set of input points \\
+\hline
+{\em num\+\_\+points} & number of points in input \\
+\hline
+{\em depth} & number of times the function is recursed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a set of points in upper hull 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{base_8cpp_aff7f7c491b6084f51cbd483d49675da4}\label{base_8cpp_aff7f7c491b6084f51cbd483d49675da4}} 
+\index{base.\+cpp@{base.\+cpp}!geom\+A\+PI@{geom\+A\+PI}}
+\index{geom\+A\+PI@{geom\+A\+PI}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{geom\+A\+PI}{geomAPI}}
+{\footnotesize\ttfamily \hyperlink{classGeomOps}{Geom\+Ops} geom\+A\+PI}
+
+
+
+Provides all the geometrical operations useful for various convex hull methods (imported file) 
+
+\mbox{\Hypertarget{base_8cpp_aa9702cb712e0ee9d47c426c78a40f8f7}\label{base_8cpp_aa9702cb712e0ee9d47c426c78a40f8f7}} 
+\index{base.\+cpp@{base.\+cpp}!vec\+A\+PI@{vec\+A\+PI}}
+\index{vec\+A\+PI@{vec\+A\+PI}!base.\+cpp@{base.\+cpp}}
+\subsubsection{\texorpdfstring{vec\+A\+PI}{vecAPI}}
+{\footnotesize\ttfamily \hyperlink{classVectorOps}{Vector\+Ops} vec\+A\+PI}
+
+
+
+Provides all the median algorithms required for convex hull algorithms. 
+

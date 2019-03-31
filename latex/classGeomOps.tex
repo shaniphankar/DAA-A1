@@ -1,0 +1,134 @@
+\hypertarget{classGeomOps}{}\section{Geom\+Ops Class Reference}
+\label{classGeomOps}\index{Geom\+Ops@{Geom\+Ops}}
+
+
+{\ttfamily \#include $<$Geom\+Ops.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{classGeomOps_a1c86fdb20bc2c6667fc0c0a4e06dd180}{highest\+Y\+Intersection} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, double k)
+\item 
+std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{classGeomOps_a4dc89814b38593ac562c5d9cef3739df}{lowest\+Y\+Intersection} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, double k)
+\item 
+double \hyperlink{classGeomOps_a4febafe2cb836369319d1280f1d73d1b}{get\+Distance} (\hyperlink{classPoint}{Point} p1, \hyperlink{classPoint}{Point} p2)
+\item 
+double \hyperlink{classGeomOps_aa043ea44a94e23c17ee6aa56d71ac1ef}{get\+Angle} (\hyperlink{classPoint}{Point} p1, \hyperlink{classPoint}{Point} p2)
+\item 
+int \hyperlink{classGeomOps_aa940ff28b586d95c2cbda894d635c332}{get\+Left\+Most} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+int \hyperlink{classGeomOps_adfa6200d7fd59612b2adce1c5ce6b291}{get\+Right\+Most} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+int \hyperlink{classGeomOps_adbbed35b057f010311831b409c4a07f8}{get\+Top\+Most} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+int \hyperlink{classGeomOps_a64f2985b274cb5055d838e4011a59345}{get\+Bottom\+Most} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{classGeomOps_abecf90c2d943a31d42767dad3f7e1c9e}{get\+Left\+Most\+Multiple} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{classGeomOps_a0c5f866d03e800a01d424fa9317a6c49}{get\+Right\+Most\+Multiple} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\item 
+int \hyperlink{classGeomOps_af0c9873799ec28ec6a4196c181bc5942}{get\+Orientation} (\hyperlink{classPoint}{Point} p1, \hyperlink{classPoint}{Point} p2, \hyperlink{classPoint}{Point} p3)
+\item 
+std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{classGeomOps_acbab4d3b33a391c1169fedec1531212a}{get\+Bottom\+Most\+Points} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, int num\+\_\+points)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classGeomOps_aa043ea44a94e23c17ee6aa56d71ac1ef}\label{classGeomOps_aa043ea44a94e23c17ee6aa56d71ac1ef}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Angle@{get\+Angle}}
+\index{get\+Angle@{get\+Angle}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Angle()}{getAngle()}}
+{\footnotesize\ttfamily double Geom\+Ops\+::get\+Angle (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{p1,  }\item[{\hyperlink{classPoint}{Point}}]{p2 }\end{DoxyParamCaption})}
+
+This funcion returns angle between two points \mbox{\Hypertarget{classGeomOps_a64f2985b274cb5055d838e4011a59345}\label{classGeomOps_a64f2985b274cb5055d838e4011a59345}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Bottom\+Most@{get\+Bottom\+Most}}
+\index{get\+Bottom\+Most@{get\+Bottom\+Most}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Bottom\+Most()}{getBottomMost()}}
+{\footnotesize\ttfamily int Geom\+Ops\+::get\+Bottom\+Most (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This funcion returns index of bottom most point \mbox{\Hypertarget{classGeomOps_acbab4d3b33a391c1169fedec1531212a}\label{classGeomOps_acbab4d3b33a391c1169fedec1531212a}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Bottom\+Most\+Points@{get\+Bottom\+Most\+Points}}
+\index{get\+Bottom\+Most\+Points@{get\+Bottom\+Most\+Points}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Bottom\+Most\+Points()}{getBottomMostPoints()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ Geom\+Ops\+::get\+Bottom\+Most\+Points (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This funcion returns all the bottom points meaning all those having lowest y coordinate \mbox{\Hypertarget{classGeomOps_a4febafe2cb836369319d1280f1d73d1b}\label{classGeomOps_a4febafe2cb836369319d1280f1d73d1b}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Distance@{get\+Distance}}
+\index{get\+Distance@{get\+Distance}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Distance()}{getDistance()}}
+{\footnotesize\ttfamily double Geom\+Ops\+::get\+Distance (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{p1,  }\item[{\hyperlink{classPoint}{Point}}]{p2 }\end{DoxyParamCaption})}
+
+This funcion return distance between two points \mbox{\Hypertarget{classGeomOps_aa940ff28b586d95c2cbda894d635c332}\label{classGeomOps_aa940ff28b586d95c2cbda894d635c332}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Left\+Most@{get\+Left\+Most}}
+\index{get\+Left\+Most@{get\+Left\+Most}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Left\+Most()}{getLeftMost()}}
+{\footnotesize\ttfamily int Geom\+Ops\+::get\+Left\+Most (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This funcion returns index of left most point \mbox{\Hypertarget{classGeomOps_abecf90c2d943a31d42767dad3f7e1c9e}\label{classGeomOps_abecf90c2d943a31d42767dad3f7e1c9e}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Left\+Most\+Multiple@{get\+Left\+Most\+Multiple}}
+\index{get\+Left\+Most\+Multiple@{get\+Left\+Most\+Multiple}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Left\+Most\+Multiple()}{getLeftMostMultiple()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ Geom\+Ops\+::get\+Left\+Most\+Multiple (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This funcion returns all the left most points meaning all those having least x coordinate \mbox{\Hypertarget{classGeomOps_af0c9873799ec28ec6a4196c181bc5942}\label{classGeomOps_af0c9873799ec28ec6a4196c181bc5942}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Orientation@{get\+Orientation}}
+\index{get\+Orientation@{get\+Orientation}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Orientation()}{getOrientation()}}
+{\footnotesize\ttfamily int Geom\+Ops\+::get\+Orientation (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{p1,  }\item[{\hyperlink{classPoint}{Point}}]{p2,  }\item[{\hyperlink{classPoint}{Point}}]{p3 }\end{DoxyParamCaption})}
+
+This funcion returns signed area for three points \mbox{\Hypertarget{classGeomOps_adfa6200d7fd59612b2adce1c5ce6b291}\label{classGeomOps_adfa6200d7fd59612b2adce1c5ce6b291}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Right\+Most@{get\+Right\+Most}}
+\index{get\+Right\+Most@{get\+Right\+Most}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Right\+Most()}{getRightMost()}}
+{\footnotesize\ttfamily int Geom\+Ops\+::get\+Right\+Most (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This funcion returns index of right most point \mbox{\Hypertarget{classGeomOps_a0c5f866d03e800a01d424fa9317a6c49}\label{classGeomOps_a0c5f866d03e800a01d424fa9317a6c49}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Right\+Most\+Multiple@{get\+Right\+Most\+Multiple}}
+\index{get\+Right\+Most\+Multiple@{get\+Right\+Most\+Multiple}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Right\+Most\+Multiple()}{getRightMostMultiple()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ Geom\+Ops\+::get\+Right\+Most\+Multiple (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This funcion returns all the right most points meaning all those having highest x coordinate \mbox{\Hypertarget{classGeomOps_adbbed35b057f010311831b409c4a07f8}\label{classGeomOps_adbbed35b057f010311831b409c4a07f8}} 
+\index{Geom\+Ops@{Geom\+Ops}!get\+Top\+Most@{get\+Top\+Most}}
+\index{get\+Top\+Most@{get\+Top\+Most}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{get\+Top\+Most()}{getTopMost()}}
+{\footnotesize\ttfamily int Geom\+Ops\+::get\+Top\+Most (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{int}]{num\+\_\+points }\end{DoxyParamCaption})}
+
+This funcion returns index of top most point \mbox{\Hypertarget{classGeomOps_a1c86fdb20bc2c6667fc0c0a4e06dd180}\label{classGeomOps_a1c86fdb20bc2c6667fc0c0a4e06dd180}} 
+\index{Geom\+Ops@{Geom\+Ops}!highest\+Y\+Intersection@{highest\+Y\+Intersection}}
+\index{highest\+Y\+Intersection@{highest\+Y\+Intersection}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{highest\+Y\+Intersection()}{highestYIntersection()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ Geom\+Ops\+::highest\+Y\+Intersection (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{double}]{k }\end{DoxyParamCaption})}
+
+This function gives the set of points from the input having the highest y coordinate for a line of mentioned slope 
+\begin{DoxyParams}{Parameters}
+{\em points} & input set of points \\
+\hline
+{\em k} & required slope of line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+set of points with highest y coordinate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGeomOps_a4dc89814b38593ac562c5d9cef3739df}\label{classGeomOps_a4dc89814b38593ac562c5d9cef3739df}} 
+\index{Geom\+Ops@{Geom\+Ops}!lowest\+Y\+Intersection@{lowest\+Y\+Intersection}}
+\index{lowest\+Y\+Intersection@{lowest\+Y\+Intersection}!Geom\+Ops@{Geom\+Ops}}
+\subsubsection{\texorpdfstring{lowest\+Y\+Intersection()}{lowestYIntersection()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ Geom\+Ops\+::lowest\+Y\+Intersection (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{double}]{k }\end{DoxyParamCaption})}
+
+This function gives the set of points from the input having the lowest y coordinate for a line of mentioned slope 
+\begin{DoxyParams}{Parameters}
+{\em points} & input set of points \\
+\hline
+{\em k} & required slope of line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+set of points with lowest y coordinate 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{GeomOps_8h}{Geom\+Ops.\+h}\item 
+\hyperlink{GeomOps_8cpp}{Geom\+Ops.\+cpp}\end{DoxyCompactItemize}

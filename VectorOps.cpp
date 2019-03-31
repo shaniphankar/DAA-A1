@@ -4,6 +4,8 @@
 #include <algorithm>
 #include "VectorOps.h"
 
+/*! This funtion simply swaps two double values
+*/
 void VectorOps::swap(double* x,double* y){
 	double temp;
 
@@ -12,7 +14,13 @@ void VectorOps::swap(double* x,double* y){
 	*y=temp;
 }
 
-
+/*! This function separates the input set across the median point along x axis
+\param points input set
+\param l left index
+\param r right index
+\param x x coordinate of median point
+\return gives the position of median point after final partitioning
+*/
 int VectorOps::medianPartition(std::vector<double> &points,int l,int r,double x){
 	/*printf("medianPartition start:\n");
 	for(int z=l;z<=r;z++){
@@ -52,6 +60,13 @@ int VectorOps::medianPartition(std::vector<double> &points,int l,int r,double x)
 	return i;
 }
 
+/*! This functions finds the median of a set of points using medians of median method
+\param points input set of points- only single coordinate
+\param l left index
+\param r right index
+\param k kth smallest element to find
+\return returns median point
+*/
 double VectorOps::medianOfMedians(std::vector<double> &points,int l,int r,int k)
 {	//dividing into buckets
 	//printf("arguments: l:%d r:%d k:%d\n",l,r,k );
@@ -86,7 +101,8 @@ double VectorOps::medianOfMedians(std::vector<double> &points,int l,int r,int k)
 	else return medianOfMedians(points,l,medianPosition - 1, k);
 }
 
-
+/*! This funtion simply swaps two point object values
+*/
 void VectorOps::swap(Point* x,Point* y){
 	Point temp;
 
@@ -95,6 +111,13 @@ void VectorOps::swap(Point* x,Point* y){
 	*y=temp;
 }
 
+/*! This function separates the input set across the median point along x axis
+\param points input set as Point object
+\param l left index
+\param r right index
+\param x x coordinate of median point
+\return gives the position of median point after final partitioning
+*/
 int VectorOps::medianPartition(std::vector<Point> &points,int l,int r,Point x){
 	/*printf("medianPartition start:\n");
 	for(int z=l;z<=r;z++){
@@ -134,10 +157,19 @@ int VectorOps::medianPartition(std::vector<Point> &points,int l,int r,Point x){
 	return i;
 }
 
+/*! This function is used to sort Point objects by x-coordinate
+*/
 bool VectorOps::sortByX(Point a,Point b){
 	return (a.getX() < b.getX());
 }
 
+/*! This functions finds the median of a set of points using medians of median method
+\param points input set of points as Point object
+\param l left index
+\param r right index
+\param k kth smallest element to find
+\return returns median point as Point object
+*/
 Point VectorOps::medianOfMedians(std::vector<Point> &points,int l,int r,int k)
 {	//dividing into buckets
 	//printf("arguments: l:%d r:%d k:%d\n",l,r,k );
@@ -171,4 +203,23 @@ Point VectorOps::medianOfMedians(std::vector<Point> &points,int l,int r,int k)
 	if(medianPosition - l == k) return medOfMed;
 	else if(k>medianPosition - l) return medianOfMedians(points,medianPosition + 1, r, k - medianPosition - 1 +  l );
 	else return medianOfMedians(points,l,medianPosition - 1, k);
+}
+
+/*! This function gets the index of a point from the set of points
+*/
+
+int VectorOps::findIndex(std::vector<Point> points,Point p)
+{
+	int i;
+	for(i=0;i<points.size();i++)
+	{
+		if(std::abs(points[i].getY()-p.getY())<0.000001)
+		{
+			if(std::abs(points[i].getX()-p.getX())<0.000001)
+			{
+				return i;
+			}
+		}
+	}
+	return -1;
 }

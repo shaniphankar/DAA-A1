@@ -14,18 +14,33 @@
 #define k0 5
 using namespace std;
 
+//! Provides all the geometrical operations useful for various convex hull methods (imported file)
 GeomOps geomAPI;
+//! Provides all the median algorithms required for convex hull algorithms
 VectorOps vecAPI;
 
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth);
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth);
 
-void grahamScan()
+/*! This function helps in comparing signed area of two points w.r.t reference base point
+*/
+bool comparator(Point p1,Point p2);
+
+/*! This function gives the points on convec hull for the input set using Graham Scan algorithm
+\param points input set of points
+\param num_points number of points in input
+\return return points on the convex hull
+*/
+vector<Point> grahamScan(vector<Point> points,int num_points)
 {
 
 }
 
-
+/*! This function gives convex hull for a set of points using Jarvis March Algorithm
+\param hull This is the hull vector to be filled using the algorithm
+\param points This is the set of input points
+\param num_points Number of points in input 
+*/
 void jarvisMarch(vector<int> &hull, vector<Point> points,int num_points)
 {
 
@@ -53,7 +68,11 @@ void jarvisMarch(vector<int> &hull, vector<Point> points,int num_points)
     }
 }
 
-
+/*! This function gives convex hull for a set of points using Kirkpatrick Siedel Algorithm
+\param points Set of input points
+\param number of points in input
+\return set of points in hull
+*/
 vector<Point> kPS(vector<Point> points,int num_points)
 {
 	Point pUMin,pUMax,pLMin,pLMax;
@@ -124,7 +143,13 @@ vector<Point> kPS(vector<Point> points,int num_points)
 	// std::vector<Point> lHull=lowerHull(pLMin,pLMax,TLo,TLo.size());
 }
 
-
+/*! This function finds of upper bridge line described by the two points
+\param S input set of points
+\param num_points number of points in input
+\param L median line described by a point
+\param depth number of times the function has recursed
+\return returns a pair of points describing upper bridge
+*/
 pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int depth)
 {
 	vector<Point> candidates;
@@ -236,6 +261,15 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 	// }
 	return upperBridge(candidates,candidates.size(),L,depth+1);
 }
+
+/*! This function calculates upper hull from given set of points
+\param pMin Point with minimum x coordinate
+\param pMax Point with maximum x coordinate
+\param points set of input points
+\param num_points number of points in input
+\param depth number of times the function is recursed
+\return Returns a set of points in upper hull
+*/
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth)
 {
 	vector<Point> hull;
@@ -300,6 +334,13 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 	return hull;
 }
 
+/*! This function finds of lower bridge line described by the two points
+\param S input set of points
+\param num_points number of points in input
+\param L median line described by a point
+\param depth number of times the function has recursed
+\return returns a pair of points describing lower bridge
+*/
 pair<Point,Point> lowerBridge(std::vector<Point> S,int num_points,Point L,int depth)
 {
 	vector<Point> candidates;
@@ -412,6 +453,14 @@ pair<Point,Point> lowerBridge(std::vector<Point> S,int num_points,Point L,int de
 	return lowerBridge(candidates,candidates.size(),L,depth+1);
 }
 
+/*! This function calculates lower hull from given set of points
+\param pMin Point with minimum x coordinate
+\param pMax Point with maximum x coordinate
+\param points set of input points
+\param num_points number of points in input
+\param depth number of times the function is recursed
+\return Returns a set of points in lower hull
+*/
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth)
 {	
 	vector<Point> hull;
@@ -477,7 +526,7 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input8.txt");
+	std::ifstream input("./input/input6.txt");
 	//std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
@@ -545,7 +594,7 @@ int main(int argc, char** argv)
 	// 	outputKPS<<hullKPS[i].getX()<<" "<<hullKPS[i].getY()<<"\n";
 	// }
 
-	std::ofstream outputKPS("./outputKPS/output8KPS.txt");
+	std::ofstream outputKPS("./outputKPS/output6KPS.txt");
 	int num_points_hull=hullKPS.size();
 	for(int i=0;i<num_points_hull;i++)
 	{

@@ -4,6 +4,11 @@
 #include "Point.h"
 #include "GeomOps.h"
 
+/*! This function gives the set of points from the input having the highest y coordinate for a line of mentioned slope
+\param points input set of points
+\param k required slope of line
+\return set of points with highest y coordinate
+*/
 std::vector<Point> GeomOps::highestYIntersection(std::vector<Point> points, double k)
 {
     int maxP=0;
@@ -21,6 +26,11 @@ std::vector<Point> GeomOps::highestYIntersection(std::vector<Point> points, doub
     return max;
 }
 
+/*! This function gives the set of points from the input having the lowest y coordinate for a line of mentioned slope
+\param points input set of points
+\param k required slope of line
+\return set of points with lowest y coordinate
+*/
 std::vector<Point> GeomOps::lowestYIntersection(std::vector<Point> points, double k)
 {
     int minP=0;
@@ -38,17 +48,22 @@ std::vector<Point> GeomOps::lowestYIntersection(std::vector<Point> points, doubl
     return min;
 }
 
-
+/*! This funcion return distance between two points
+*/
 double GeomOps::getDistance(Point p1, Point p2)
 {
     return sqrt(pow(p1.getY()-p2.getY(),2)+pow(p1.getX()-p2.getX(),2));
 }
 
+/*! This funcion returns angle between two points
+*/
 double GeomOps::getAngle(Point p1, Point p2)
 {
     return atan2(p1.getY()-p2.getY(),p1.getX()-p2.getX());
 }
 
+/*! This funcion returns index of left most point
+*/
 int GeomOps::getLeftMost(std::vector<Point> points,int num_points)
 {
     int lMost=0;
@@ -62,6 +77,8 @@ int GeomOps::getLeftMost(std::vector<Point> points,int num_points)
     return lMost;
 }
 
+/*! This funcion returns index of right most point
+*/
 int GeomOps::getRightMost(std::vector<Point> points,int num_points)
 {
     int rMost=0;
@@ -75,6 +92,8 @@ int GeomOps::getRightMost(std::vector<Point> points,int num_points)
     return rMost;
 }
 
+/*! This funcion returns index of bottom most point
+*/
 int GeomOps::getBottomMost(std::vector<Point> points,int num_points)
 {
     int bMost=0;
@@ -88,6 +107,8 @@ int GeomOps::getBottomMost(std::vector<Point> points,int num_points)
     return bMost;
 }
 
+/*! This funcion returns index of top most point
+*/
 int GeomOps::getTopMost(std::vector<Point> points,int num_points)
 {
     int tMost=0;
@@ -101,6 +122,8 @@ int GeomOps::getTopMost(std::vector<Point> points,int num_points)
     return tMost;
 }
 
+/*! This funcion returns all the left most points meaning all those having least x coordinate
+*/
 std::vector<Point> GeomOps::getLeftMostMultiple(std::vector<Point> points,int num_points)
 {
     int lMost=0;
@@ -121,6 +144,9 @@ std::vector<Point> GeomOps::getLeftMostMultiple(std::vector<Point> points,int nu
     }
     return lMostVec;
 }
+
+/*! This funcion returns all the right most points meaning all those having highest x coordinate
+*/
 std::vector<Point> GeomOps::getRightMostMultiple(std::vector<Point> points,int num_points)
 {
     int rMost=0;
@@ -141,6 +167,9 @@ std::vector<Point> GeomOps::getRightMostMultiple(std::vector<Point> points,int n
     }
     return rMostVec;
 }
+
+/*! This funcion returns signed area for three points
+*/
 int GeomOps::getOrientation(Point p1,Point p2, Point p3)
 {
     double crossProduct=(p2.getY()-p1.getY())*(p3.getX()-p2.getX())-(p2.getX()-p1.getX())*(p3.getY()-p2.getY());
@@ -152,3 +181,31 @@ int GeomOps::getOrientation(Point p1,Point p2, Point p3)
         return -1;
     
 }
+
+/*! This funcion returns all the bottom points meaning all those having lowest y coordinate
+*/
+std::vector<Point> GeomOps::getBottomMostPoints(std::vector<Point> points,int num_points)
+{
+    int i,bottomMostIndx=0;
+    for(i=0;i<num_points;i++)
+    {
+        if(points[i].getY()<points[bottomMostIndx].getY())
+        {
+
+            bottomMostIndx=i;
+        }
+    }
+
+    std::vector<Point> BottomMostpoints;
+
+    for(i=0;i<num_points;i++)
+    {
+        if(std::abs(points[i].getY()-points[bottomMostIndx].getY())<0.000001)
+        {
+            BottomMostpoints.push_back(points[i]);
+        }
+    }
+
+    return BottomMostpoints;
+}
+

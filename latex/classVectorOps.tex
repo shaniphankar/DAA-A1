@@ -1,0 +1,141 @@
+\hypertarget{classVectorOps}{}\section{Vector\+Ops Class Reference}
+\label{classVectorOps}\index{Vector\+Ops@{Vector\+Ops}}
+
+
+{\ttfamily \#include $<$Vector\+Ops.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classVectorOps_aaa12e98c15826f69b92a7fef41e61db5}{swap} (double $\ast$x, double $\ast$y)
+\item 
+int \hyperlink{classVectorOps_a3c490fb15256d7fcf0ffdb0a4c316635}{median\+Partition} (std\+::vector$<$ double $>$ \&points, int l, int r, double x)
+\item 
+double \hyperlink{classVectorOps_a87343d20cbf792b40b99881263c14910}{median\+Of\+Medians} (std\+::vector$<$ double $>$ \&points, int l, int r, int k)
+\item 
+void \hyperlink{classVectorOps_a86b58d279da36403a22f9fb9ff85dd47}{swap} (\hyperlink{classPoint}{Point} $\ast$x, \hyperlink{classPoint}{Point} $\ast$y)
+\item 
+int \hyperlink{classVectorOps_a7e1ac242a77ccff184b34807ec85b360}{median\+Partition} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \&points, int l, int r, \hyperlink{classPoint}{Point} x)
+\item 
+\hyperlink{classPoint}{Point} \hyperlink{classVectorOps_adc2f247b4544a27a48725883298184f5}{median\+Of\+Medians} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \&points, int l, int r, int k)
+\item 
+int \hyperlink{classVectorOps_a8da0947a76491f3b449b5eb5bb14d2fc}{find\+Index} (std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ points, \hyperlink{classPoint}{Point} p)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{classVectorOps_a6151f4a74a64dc19d49ed03f8b72291f}{sort\+ByX} (\hyperlink{classPoint}{Point} a, \hyperlink{classPoint}{Point} b)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classVectorOps_a8da0947a76491f3b449b5eb5bb14d2fc}\label{classVectorOps_a8da0947a76491f3b449b5eb5bb14d2fc}} 
+\index{Vector\+Ops@{Vector\+Ops}!find\+Index@{find\+Index}}
+\index{find\+Index@{find\+Index}!Vector\+Ops@{Vector\+Ops}}
+\subsubsection{\texorpdfstring{find\+Index()}{findIndex()}}
+{\footnotesize\ttfamily int Vector\+Ops\+::find\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$}]{points,  }\item[{\hyperlink{classPoint}{Point}}]{p }\end{DoxyParamCaption})}
+
+This function gets the index of a point from the set of points \mbox{\Hypertarget{classVectorOps_a87343d20cbf792b40b99881263c14910}\label{classVectorOps_a87343d20cbf792b40b99881263c14910}} 
+\index{Vector\+Ops@{Vector\+Ops}!median\+Of\+Medians@{median\+Of\+Medians}}
+\index{median\+Of\+Medians@{median\+Of\+Medians}!Vector\+Ops@{Vector\+Ops}}
+\subsubsection{\texorpdfstring{median\+Of\+Medians()}{medianOfMedians()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double Vector\+Ops\+::median\+Of\+Medians (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{points,  }\item[{int}]{l,  }\item[{int}]{r,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+This functions finds the median of a set of points using medians of median method 
+\begin{DoxyParams}{Parameters}
+{\em points} & input set of points-\/ only single coordinate \\
+\hline
+{\em l} & left index \\
+\hline
+{\em r} & right index \\
+\hline
+{\em k} & kth smallest element to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns median point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVectorOps_adc2f247b4544a27a48725883298184f5}\label{classVectorOps_adc2f247b4544a27a48725883298184f5}} 
+\index{Vector\+Ops@{Vector\+Ops}!median\+Of\+Medians@{median\+Of\+Medians}}
+\index{median\+Of\+Medians@{median\+Of\+Medians}!Vector\+Ops@{Vector\+Ops}}
+\subsubsection{\texorpdfstring{median\+Of\+Medians()}{medianOfMedians()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classPoint}{Point} Vector\+Ops\+::median\+Of\+Medians (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \&}]{points,  }\item[{int}]{l,  }\item[{int}]{r,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+This functions finds the median of a set of points using medians of median method 
+\begin{DoxyParams}{Parameters}
+{\em points} & input set of points as \hyperlink{classPoint}{Point} object \\
+\hline
+{\em l} & left index \\
+\hline
+{\em r} & right index \\
+\hline
+{\em k} & kth smallest element to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns median point as \hyperlink{classPoint}{Point} object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVectorOps_a3c490fb15256d7fcf0ffdb0a4c316635}\label{classVectorOps_a3c490fb15256d7fcf0ffdb0a4c316635}} 
+\index{Vector\+Ops@{Vector\+Ops}!median\+Partition@{median\+Partition}}
+\index{median\+Partition@{median\+Partition}!Vector\+Ops@{Vector\+Ops}}
+\subsubsection{\texorpdfstring{median\+Partition()}{medianPartition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int Vector\+Ops\+::median\+Partition (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{points,  }\item[{int}]{l,  }\item[{int}]{r,  }\item[{double}]{x }\end{DoxyParamCaption})}
+
+This function separates the input set across the median point along x axis 
+\begin{DoxyParams}{Parameters}
+{\em points} & input set \\
+\hline
+{\em l} & left index \\
+\hline
+{\em r} & right index \\
+\hline
+{\em x} & x coordinate of median point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+gives the position of median point after final partitioning 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVectorOps_a7e1ac242a77ccff184b34807ec85b360}\label{classVectorOps_a7e1ac242a77ccff184b34807ec85b360}} 
+\index{Vector\+Ops@{Vector\+Ops}!median\+Partition@{median\+Partition}}
+\index{median\+Partition@{median\+Partition}!Vector\+Ops@{Vector\+Ops}}
+\subsubsection{\texorpdfstring{median\+Partition()}{medianPartition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int Vector\+Ops\+::median\+Partition (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classPoint}{Point} $>$ \&}]{points,  }\item[{int}]{l,  }\item[{int}]{r,  }\item[{\hyperlink{classPoint}{Point}}]{x }\end{DoxyParamCaption})}
+
+This function separates the input set across the median point along x axis 
+\begin{DoxyParams}{Parameters}
+{\em points} & input set as \hyperlink{classPoint}{Point} object \\
+\hline
+{\em l} & left index \\
+\hline
+{\em r} & right index \\
+\hline
+{\em x} & x coordinate of median point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+gives the position of median point after final partitioning 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVectorOps_a6151f4a74a64dc19d49ed03f8b72291f}\label{classVectorOps_a6151f4a74a64dc19d49ed03f8b72291f}} 
+\index{Vector\+Ops@{Vector\+Ops}!sort\+ByX@{sort\+ByX}}
+\index{sort\+ByX@{sort\+ByX}!Vector\+Ops@{Vector\+Ops}}
+\subsubsection{\texorpdfstring{sort\+By\+X()}{sortByX()}}
+{\footnotesize\ttfamily bool Vector\+Ops\+::sort\+ByX (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{a,  }\item[{\hyperlink{classPoint}{Point}}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This function is used to sort \hyperlink{classPoint}{Point} objects by x-\/coordinate \mbox{\Hypertarget{classVectorOps_aaa12e98c15826f69b92a7fef41e61db5}\label{classVectorOps_aaa12e98c15826f69b92a7fef41e61db5}} 
+\index{Vector\+Ops@{Vector\+Ops}!swap@{swap}}
+\index{swap@{swap}!Vector\+Ops@{Vector\+Ops}}
+\subsubsection{\texorpdfstring{swap()}{swap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Vector\+Ops\+::swap (\begin{DoxyParamCaption}\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{y }\end{DoxyParamCaption})}
+
+This funtion simply swaps two double values \mbox{\Hypertarget{classVectorOps_a86b58d279da36403a22f9fb9ff85dd47}\label{classVectorOps_a86b58d279da36403a22f9fb9ff85dd47}} 
+\index{Vector\+Ops@{Vector\+Ops}!swap@{swap}}
+\index{swap@{swap}!Vector\+Ops@{Vector\+Ops}}
+\subsubsection{\texorpdfstring{swap()}{swap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Vector\+Ops\+::swap (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point} $\ast$}]{x,  }\item[{\hyperlink{classPoint}{Point} $\ast$}]{y }\end{DoxyParamCaption})}
+
+This funtion simply swaps two point object values 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{VectorOps_8h}{Vector\+Ops.\+h}\item 
+\hyperlink{VectorOps_8cpp}{Vector\+Ops.\+cpp}\end{DoxyCompactItemize}
