@@ -238,6 +238,20 @@ pair<Point,Point> upperBridge(std::vector<Point> S,int num_points,Point L,int de
 }
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth)
 {
+	vector<Point> hull;
+	if(num_points==1)
+	{
+		vector<Point> hull;
+		hull.push_back(pMin);
+		return hull;
+	}
+	if(num_points==2)
+	{
+		vector<Point> hull;
+		hull.push_back(pMin);
+		hull.push_back(pMax);
+		return hull;
+	}
 	Point a=vecAPI.medianOfMedians(points,0,num_points-1,num_points/2);
 	// a.printPoint();
 	pair<Point,Point> upBridge=upperBridge(points,num_points,a,0);
@@ -271,7 +285,6 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 		upHullL=upperHull(pMin,upBridge.first,TLeft,TLeft.size(),depth+1);
 	if(TRight.size()>=2)
 		upHullR=upperHull(upBridge.second,pMax,TRight,TRight.size(),depth+1);
-	vector<Point> hull;
 	for(int i=0;i<upHullL.size();i++)
 	{
 		hull.push_back(upHullL[i]);
@@ -398,7 +411,22 @@ pair<Point,Point> lowerBridge(std::vector<Point> S,int num_points,Point L,int de
 }
 
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth)
-{	Point a=vecAPI.medianOfMedians(points,0,num_points-1,num_points/2);
+{	
+	vector<Point> hull;
+	if(num_points==1)
+	{
+		vector<Point> hull;
+		hull.push_back(pMin);
+		return hull;
+	}
+	if(num_points==2)
+	{
+		vector<Point> hull;
+		hull.push_back(pMin);
+		hull.push_back(pMax);
+		return hull;
+	}
+	Point a=vecAPI.medianOfMedians(points,0,num_points-1,num_points/2);
 	// a.printPoint();
 	pair<Point,Point> lowBridge=lowerBridge(points,num_points,a,0);
 	cout<<"Hull Depth="<<depth<<"\nLowerBridge\n";
@@ -427,7 +455,6 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 		lowHullL=lowerHull(pMin,lowBridge.first,TLeft,TLeft.size(),depth+1);
 	if(TRight.size()>=2)
 		lowHullR=lowerHull(lowBridge.second,pMax,TRight,TRight.size(),depth+1);
-	vector<Point> hull;
 	for(int i=0;i<lowHullL.size();i++)
 	{
 		hull.push_back(lowHullL[i]);
@@ -446,7 +473,7 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 
 int main(int argc, char** argv)
 {
-	std::ifstream input("./input/input7.txt");
+	std::ifstream input("./input/input2.txt");
 	//std::ifstream input("./input/input7.txt");//Degeneracy case with 2 leftmost points
 	vector<Point> points;
 	string line_data;
@@ -514,7 +541,7 @@ int main(int argc, char** argv)
 	// 	outputKPS<<hullKPS[i].getX()<<" "<<hullKPS[i].getY()<<"\n";
 	// }
 
-	std::ofstream outputKPS("./outputKPS/output7KPS.txt");
+	std::ofstream outputKPS("./outputKPS/output2KPS.txt");
 	int num_points_hull=hullKPS.size();
 	for(int i=0;i<num_points_hull;i++)
 	{
