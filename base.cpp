@@ -22,6 +22,14 @@ VectorOps vecAPI;
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth);
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth);
 
+std::ofstream outputKPS1("./outputKPS/output6KPSUpBridge.txt");
+std::ofstream outputKPS2("./outputKPS/output6KPSUpLeft.txt");
+std::ofstream outputKPS3("./outputKPS/output6KPSUpRight.txt");
+std::ofstream outputKPS4("./outputKPS/output6KPSLowBridge.txt");
+std::ofstream outputKPS5("./outputKPS/output6KPSLowLeft.txt");
+std::ofstream outputKPS6("./outputKPS/output6KPSLowRight.txt");
+	
+
 /*! This function helps in comparing signed area of two points w.r.t reference base point
 */
 bool comparator(Point p1,Point p2);
@@ -331,6 +339,19 @@ std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int
 	{
 		hull.push_back(upHullR[i]);
 	}
+	if(depth==0)
+	{
+		for(int i=0;i<upHullL.size();i++)
+		{
+			outputKPS2<<upHullL[i].getX()<<" "<<upHullL[i].getY()<<"\n";
+		}
+		outputKPS1<<upBridge.first.getX()<<" "<<upBridge.first.getY()<<"\n";
+		outputKPS1<<upBridge.second.getX()<<" "<<upBridge.second.getY()<<"\n";
+		for(int i=0;i<upHullR.size();i++)
+		{
+			outputKPS3<<upHullR[i].getX()<<" "<<upHullR[i].getY()<<"\n";
+		}
+	}
 	return hull;
 }
 
@@ -517,6 +538,19 @@ std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int
 	for(int i=0;i<lowHullR.size();i++)
 	{
 		hull.push_back(lowHullR[i]);
+	}
+	if(depth==0)
+	{
+		for(int i=0;i<lowHullL.size();i++)
+		{
+			outputKPS5<<lowHullL[i].getX()<<" "<<lowHullL[i].getY()<<"\n";
+		}
+		outputKPS4<<lowBridge.first.getX()<<" "<<lowBridge.first.getY()<<"\n";
+		outputKPS4<<lowBridge.second.getX()<<" "<<lowBridge.second.getY()<<"\n";
+		for(int i=0;i<lowHullR.size();i++)
+		{
+			outputKPS6<<lowHullR[i].getX()<<" "<<lowHullR[i].getY()<<"\n";
+		}
 	}
 	return hull;
 }
