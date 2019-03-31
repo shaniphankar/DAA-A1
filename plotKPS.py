@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import os
-num=1
+num=7
 type="KPS"
 if __name__=='__main__':
 	pathPointsFull=os.getcwd()+'/input/input'+str(num)+'.txt'
@@ -19,6 +19,7 @@ if __name__=='__main__':
 	pointsX=[]
 	pointsY=[]
 	for line in pointsFile.readlines():
+		print((line[:-1].split(" ")))
 		pointsX.append((float)(line[:-1].split(" ")[0]))
 		pointsY.append((float)(line[:-1].split(" ")[1]))
 	
@@ -49,7 +50,8 @@ if __name__=='__main__':
 	plt.plot(pointsX,pointsY,'g')
 	# plt.plot(pointsXLow,pointsYLow,'g')
 	# plt.savefig(os.getcwd()+'/plotsKPS/'+str(num)+'/plotLOJM.png')
-	plt.savefig(os.getcwd()+'/plotsKPS/'+str(num)+'/plotFullJM.png')
+	plt.show()
+	# plt.savefig(os.getcwd()+'/plotsKPS/'+str(num)+'/plotFullJM.png')
 
 	# pointsX=[]
 	# pointsY=[]
