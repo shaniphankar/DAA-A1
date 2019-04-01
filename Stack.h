@@ -48,6 +48,13 @@ class Stack
 				return arr[top];
 			}
 		}
+		T peek2()
+		{
+			if(top-1!=-1)
+			{
+				return arr[top-1];
+			}
+		}
 	private:
 		T *arr;
 		int top;
