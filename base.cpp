@@ -19,6 +19,8 @@ GeomOps geomAPI;
 //! Provides all the median algorithms required for convex hull algorithms
 VectorOps vecAPI;
 
+Point refpt;
+
 std::vector<Point> upperHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth);
 std::vector<Point> lowerHull(Point pMin,Point pMax,std::vector<Point> points,int num_points,int depth);
 
@@ -32,7 +34,22 @@ std::ofstream outputKPS6("./outputKPS/output6KPSLowRight.txt");
 
 /*! This function helps in comparing signed area of two points w.r.t reference base point
 */
-bool comparator(Point p1,Point p2);
+bool comparator(Point p1,Point p2)
+{
+    int orient=geomAPI.getOrientation(refpt,p1,p2);
+    if(orient==-1)
+    {
+        return true;
+    }
+    if(orient==0)
+    {
+        if(geomAPI.getDistance(refpt,p1)<geomAPI.getDistance(refpt,p2))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 /*! This function gives the points on convec hull for the input set using Graham Scan algorithm
 \param points input set of points
@@ -41,7 +58,41 @@ bool comparator(Point p1,Point p2);
 */
 vector<Point> grahamScan(vector<Point> points,int num_points)
 {
+	vector<Point> bottomMostPoints=geomAPI.getBottomMostPoints(points,num_points);
+	int leftMost=geomAPI.getLeftMost(bottomMostPoints,bottomMostPoints.size());
+	int lefty=vecAPI.findIndex(points,bottomMostPoints[leftMost]);
+	vecAPI.swap(&points[0],&points[lefty]);
+	refpt=points[0];
+	sort(points.begin()+1,points.end(),comparator);
 
+	int m=1;
+	for(int i=0;i<points.size();i++)
+	{
+		while(i<(points.size()-1)&&geomAPI.getOrientation(points[0],points[i],points[i+1])==0)
+			i++;
+		points[m]=points[i];
+		m++;
+	} 
+
+	Stack<Point> s;
+	s.push(points[0]);
+	s.push(points[1]);
+	s.push(points[2]);
+	for(int i=3;i<m;i++)
+	{
+		while(geomAPI.getOrientation(s.peek2(),s.peek(),points[i])!=-1)
+		{
+			s.pop();
+		}
+		s.push(points[i]);
+	}
+
+	vector<Point> convexHull;
+	while(!(s.isEmpty()))
+	{
+		convexHull.push_back(s.pop());
+	}
+	return convexHull;
 }
 
 /*! This function gives convex hull for a set of points using Jarvis March Algorithm
@@ -580,7 +631,7 @@ int main(int argc, char** argv)
 		line_stream>>x>>y;
 		points.push_back(Point(x,y));
 	}
-	vector<int> hullGS;
+	//vector<int> hullGS;
 	vector<int> hullJM;
 	vector<Point> hullKPS;
 	hullKPS=kPS(points,num_points);
@@ -627,6 +678,14 @@ int main(int argc, char** argv)
 	// {
 	// 	outputKPS<<hullKPS[i].getX()<<" "<<hullKPS[i].getY()<<"\n";
 	// }
+	
+// 	vector<Point> gsHull=grahamScan(points,num_points);
+// 	std::ofstream outputGS("./outputGS/output1GS.txt");
+// 	int num_points_hull=gsHull.size();
+// 	for(int i=0;i<num_points_hull;i++)
+// 	{
+// 		outputGS<<gsHull[i].getX()<<" "<<gsHull[i].getY()<<"\n";
+// 	}
 
 	std::ofstream outputKPS("./outputKPS/output6KPS.txt");
 	int num_points_hull=hullKPS.size();
